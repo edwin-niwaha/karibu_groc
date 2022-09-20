@@ -1,0 +1,17 @@
+git remote add karibu https://github.com/edwin-niwaha/karibu_groceries.git
+git status
+git add .
+git commit -m "git push cmds"
+git push -u karibu main
+
+seting up the NodeJs project
+create a directory
+git status
+npm init
+//fatal: not a git repository (or any of the parent directories): .git
+
+npm install express
+npm instal	mongoose
+npm instal	nodemon
+npm instal	pug
+add this --- "start": "nodemon index.js" -- in pacage.json

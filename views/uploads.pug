@@ -1,0 +1,7 @@
+extends layout 
+block content 
+    form(action='/uploads' method='POST' enctype='multipart/form-data')
+        .mb-3
+            label.form-label(for='exampleInputEmail1') Upload Image
+            input#exampleInputEmail1.form-control(type='file' name='image' accept='image/*')
+        button.btn.btn-primary(type='submit') Submit

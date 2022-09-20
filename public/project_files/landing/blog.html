@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Karibu Groceries | Blog</title>
+
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
+    <!--title logo-->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
+
+    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="../assets/js/config.js"></script>
+    <script src="../vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+
+    <!--    Stylesheets-->
+    <!-- =============================================== /vendors/swiper/swiper-bundle.min.css-->
+    <link href="../vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../vendors/overlayscrollbars/OverlayScrollbars.min.css" rel="stylesheet">
+    <link href="../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="../assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <!--has controls for bg image-->
+    <link href="../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+
+    <!--load fontawesome cdn-->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        #more {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+        <!-- start nav -->
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+        <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark"
+            data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
+            <div class="container-fluid">
+                <a href="../index.html" class="navbar-brand"><span class="text-white dark__text-white">Karibu
+                        Groceries</span></a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="../index.html" class="nav-item nav-link active">Home</a>
+                        <a href="../landing/collections.html" class="nav-item nav-link">Shop</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu">
+                                <a href="../landing/about.html" class="dropdown-item">About Us</a>
+                                <a href="../landing/blog.html" class="dropdown-item">Blog</a>
+                            </div>
+                        </div>
+                        <a href="../landing/contact.html" class="nav-item nav-link">Contact Us</a>
+                    </div>
+                    <div class="navbar-nav ms-auto">
+                        <!-- <a href="#" class="nav-item nav-link">Login</a> -->
+                        <a class="nav-link" href="../authentication/simple/login.html"> <i class='fa-solid fa-lock'
+                                style='color: red'></i> Login </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end nav -->
+
+        <!-- <section> begin ============================-->
+        <section class="light">
+            <div class="bg-holder overlay"
+                style="background-image:url(../assets/images/soybeans/soyb1.jpg);background-position: center bottom;">
+            </div>
+            <!--/.bg-holder-->
+            <!-- Page header with logo and tagline-->
+            <header class="py-5 bg-light border-bottom mb-4">
+                <div class="container">
+                    <div class="text-center my-5">
+                        <h1 class="fw-bolder" style="color: white;">Welcome to Blog!</h1>
+                        <hr>
+                        <p class="lead mb-0">
+                        <h3 style="color: whitesmoke;size: 60px; font-family: 'Times New Roman', Times, serif;">
+                            Karibu groceries Ltd is a wholesale produce distributor dealing in cereals with two branches
+                            in
+                            different locations.We deal in cereals (Beans, Grain Maize, Cow peas, G-nuts and Soybeans).
+                        </h3>
+                        <a class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2"
+                            href="../landing/contact.html">Contact Us<span class="fas fa-play ms-2"
+                                data-fa-transform="shrink-6 down-1"></span></a>
+                        </p>
+                    </div>
+                </div>
+            </header>
+        </section><!-- <section> close ============================-->
+        <!-- ============================================-->
+
+        <!-- <section> begin ============================-->
+        <section class="light">
+            <div class="bg-holder overlay" style="background-color:rgb(0, 191, 255)">
+            </div>
+            <!-- Page content-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Blog entries-->
+                    <div class="col-lg-8">
+                        <!-- Featured blog post-->
+                        <div class="card mb-4">
+                            <a href="!#"><img class="card-img-top" src="../assets/images/maize/grain1.jpg"
+                                    alt="..." /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">August 1, 2022</div>
+                                <h2 class="card-title">Grain Maize</h2>
+                                <p class="card-text">
+                                <p>
+                                    We have the best variety of maize that yields highly in deep and well
+                                    supplied soils. It is good for food, feed, and industrial products including
+                                    <span id="dots">...</span><span id="more">
+                                         biodegradable foams, plastics, and adhesives.                             
+                                        The categories available are
+                                        Dent com, Flint corn, Sweet corn, Pop corn and Flour corn.</span>
+                                </p>
+                                <button class="btn btn-primary" onclick="myFunction()" id="myBtn">Read more →</button>
+                            </div>
+                        </div>
+                        <!-- Nested row for non-featured blog posts-->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- Blog post-->
+                                <div class="card mb-4">
+                                    <a href="#!"><img class="card-img-top" src="../assets/images/cowpease/pease3.jpg"
+                                            alt="Cowpease" /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">January 1, 2022</div>
+                                        <h2 class="card-title h4">Cowpease</h2>
+                                        <p class="card-text">Due to its tolerance for sandy soil and low rainfall. The
+                                            categories available are Yardlong bean, Catjang and Dixie Lee Pea.</p>
+                                            <a class="btn btn-primary" href="../landing/collections.html">Shop →</a> 
+                                    </div>
+                                </div>
+                                <!-- Blog post-->
+                                <div class="card mb-4">
+                                    <a href="#!"><img class="card-img-top" src="../assets/images/gnuts/nuts2.jpg"
+                                            alt="..." /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">January 1, 2022</div>
+                                        <h2 class="card-title h4">Ground Nuts</h2>
+                                        <p class="card-text">It is also known as the peanut, goober, pindar or monkey
+                                            nut, It is a legume crop grown mainly for its edible seeds. The varieties
+                                            available are Virginia type, Long Manyema type, Red Beauty (Red seeded)</p>
+                                            <a class="btn btn-primary" href="../landing/collections.html">Shop →</a>                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <!-- Blog post-->
+                                <div class="card mb-4">
+                                    <a href="#!"><img class="card-img-top"
+                                            src="../assets/images/soybeans/soy_slide2.jpg" alt="..." /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">January 1, 2022</div>
+                                        <h2 class="card-title h4">Soybeans</h2>
+                                        <p class="card-text">It is widely grown for its
+                                            edible bean, The categories available are Green
+                                            soybeans, Yellow soybeans and Black soybeans.</p>
+                                            <a class="btn btn-primary" href="../landing/collections.html">Shop →</a>                                   </div>
+                                </div>
+                                <!-- Blog post-->
+                                <div class="card mb-4">
+                                    <a href="#!"><img class="card-img-top" src="../assets/images/beans/beans2.jpg"
+                                            alt="..." /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">January 1, 2022</div>
+                                        <h2 class="card-title h4">Beans</h2>
+                                        <p class="card-text">They are an affordable source of protein, fiber, iron, and
+                                            vitamins that offer many health benefits. The categories available are lima
+                                            beans, black beans, kidney beans, red beans, navy beans and garbanzo beans.
+                                        </p>
+                                        <a class="btn btn-primary" href="../landing/collections.html">Shop →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pagination-->
+                        <nav aria-label="Pagination">
+                            <hr class="my-0" />
+                            <ul class="pagination justify-content-center my-4">
+                                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
+                                        aria-disabled="true">Newer</a></li>
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                                <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                                <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Side widgets-->
+                    <div class="col-lg-4">
+                        <!-- Search widget-->
+                        <div class="card mb-4">
+                            <div class="card-header">Search</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Enter search term..."
+                                        aria-label="Enter search term..." aria-describedby="button-search" />
+                                    <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Categories widget-->
+                        <div class="card mb-4">
+                            <div class="card-header">Karibu groceries Ltd deals in cereals</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><a href="#!">Beans</a></li>
+                                            <li><a href="#!">Grain Maize</a></li>
+                                            <li><a href="#!">Cow peas</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><a href="#!">G-nuts</a></li>
+                                            <li><a href="#!">Soybeans</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Side widget-->
+                        <div class="card mb-4">
+                            <div class="card-header">Upcoming stories...</div>
+                            <div class="card-body">Karibu groceries Ltd is here to serve you!</div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of .container-->
+        </section><!-- <section> close ============================-->
+        <!-- ============================================-->
+
+        <!-- <section> begin ============================-->
+        <section class="py-0 bg-dark light">
+            <div>
+                <hr class="my-0 text-600 opacity-25" />
+                <div class="container py-3">
+                    <div class="row justify-content-between fs--1">
+                        <div class="col-12 col-sm-auto text-center">
+                            <p class="mb-0 text-600 opacity-85">2022 &copy; Karibu Groceries Ltd - <a a
+                                    class="text-white opacity-85" href="https://perpetualict.com/"
+                                    target="_blank">crafted by Edwin Niwaha</a> | All Rights
+                                Reserved
+                                <span class="d-none d-sm-inline-block">| </span><br class="d-sm-none" />
+                            </p>
+                        </div>
+                        <div class="col-12 col-sm-auto text-center">
+                            <p class="mb-0 text-600 opacity-85"></p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of .container-->
+        </section><!-- <section> close ============================-->
+        <!-- ============================================-->
+
+    </main><!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+    </div>
+    </a>
+    <script src="../vendors/popper/popper.min.js"></script>
+    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../vendors/is/is.min.js"></script>
+    <script src="../vendors/swiper/swiper-bundle.min.js"> </script>
+    <script src="../vendors/typed.js/typed.js"></script>
+    <script src="../vendors/fontawesome/all.min.js"></script>
+    <script src="../vendors/lodash/lodash.min.js"></script>
+    <script src="../vendors/list.js/list.min.js"></script>
+    <script src="../assets/js/theme.js"></script>
+
+    <!-- for reading more and less -->
+    <script>
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+        }
+    </script>
+</body>
+
+</html>

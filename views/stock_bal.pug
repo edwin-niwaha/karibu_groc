@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Stock Report
+    link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    link(rel='stylesheet' href='http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css')
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    script(type='text/javascript' src='http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js')
+    script(type='text/javascript' src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    link(rel="stylesheet" href="/styles/main_ion.css")    
+body(style='margin:20px auto')
+    .container-fluid
+      .row.header(style='text-align:center;color:green')
+        h3 Stock Balances Report
+      if Sales.length
+        table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
+          thead
+            tr
+              th #
+              th Produce Name
+              th Tonnage
+              th Unit Price
+              th Total Amout(UgX)
+              th Buyer
+              th Sales Agent
+              th Ref No
+              th Sale Date
+              th Updated
+              th Action
+              th
+          tbody
+          each Sale in Sales
+            tr
+              td 
+              td #{Sale.prodname}
+              td #{Sale.tonn}
+              td #{Sale.unitprice}
+              td #{Sale.amtpd}
+              td #{Sale.ddbuyer}
+              td #{Sale.salesagent}
+              td #{Sale.refno} 
+              td #{moment(Sale.sdate).format("DD-MM-YYYY (HH:MM:SS)")}                                   
+              td #{moment(Sale.updatedAt).format("DD-MM-YYYY (HH:MM:SS)")}
+              td
+                  a.remove(href='/stock_bal'+Sale._id)
+                    ion-icon(name='trash-outline')
+              td 
+                  a.edit(href='/salesUpdate'+Sale._id)
+                    ion-icon(name='create-outline')
+      else
+        p There are no records to display        
+    script.
+      $(document).ready(function () {
+      $('#myTable').dataTable();
+      });
+script( type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js")
+

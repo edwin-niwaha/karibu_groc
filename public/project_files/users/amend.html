@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Karibu Groceries | Amend</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../assets/img/favicons/favicon-32x32.png">
+    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="../plugins/morris/morris.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../Style/chosen.css" /><!-- Important for searhable dropdwn-->
+    <link rel="stylesheet" href="../users/css/style.css">
+    <!--load fontawesome cdn-->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- include header.html -->
+    <!-- source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages -->
+    <script src="../js_header/jquery-3.3.1.js"></script>
+
+    <script>
+        $(function () {
+            $("#header").load("../header.html");
+            $("#footer").load("../footer.html");
+        });
+    </script>
+<style>
+    #userdd{
+        width: 100%;
+        height: 50px !important;
+    }
+</style>
+</head>
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="../dashboard/dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
+                </div>
+            </div>
+
+            <nav class="navbar-custom">
+
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item notification-list">
+                        <a class="nav-link right-bar-toggle waves-light waves-effect" href="#">
+                            <i class="mdi mdi-dots-horizontal noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="mdi mdi-bell noti-icon"></i>
+
+                        </a>
+
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="../assets/images/pendeza_logo.png" alt="user" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h6 class="text-overflow"><small>Welcome ! <asp:Label ID="Label1" runat="server"
+                                            Text="Label"></asp:Label></small> </h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account"></i> <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-settings"></i> <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="../authentication/simple/logout.html" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout"></i> <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search">
+                        <!-- <form role="search" class="">
+                            <input type="text" placeholder="Search..." class="form-control">
+                            <a href="#"><i class="fa fa-search"></i></a>
+                        </form> -->
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== Pro-->
+        <div id="header" class="left side-menu">
+        </div>
+        <!-- ========== Left Sidebar End ========== Pro-->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Left Sidebar End -->
+                    <!-- ============================================================== -->
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">Welcome
+                                    &nbsp;|&nbsp;
+                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Edwin
+                                    </asp:Label>
+                                </h4>
+                                <ol class="breadcrumb float-right">
+                                    User Name:&nbsp;&nbsp;
+                                    <input type="text" name="username" id="username" autocomplete="off" disabled
+                                    style="width: auto; border-radius: 5px; border-width: 0ex;color: red; font-family: initial;">
+                                    <li class="breadcrumb-item"><a href="./import.html">Import</a></li>
+                                    &nbsp;
+                                    <li class="breadcrumb-item"><a href="./amend.html">Amend
+                                        </a></li>
+
+                                    &nbsp;
+                                    <li class="breadcrumb-item"><a href="./add.html">Add User</a></li>
+                                    &nbsp;
+                                    <li class="breadcrumb-item"><a href="./ulist.html">List of Users</a></li>
+
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="regform" class="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card-box">
+                                    <div class="form-horizontal" role="form">
+                                        <div class="form-field">
+                                            <label for="userdd"></label>
+                                            <select id="userdd" value="userdd" name="userdd" class="chzn-select" style="width: 100%;">
+                                                <option value="" selected>--search username--</option>
+                                                <option value="Niwaha Edwin">A</option>
+                                                <option value="Nabaasa Faith">B</option>
+                                                <option value="Namanya Esther">C</option>
+                                            </select>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="form-field">
+                                            <label for="ddrole">User role:</label>
+                                            <select id="ddrole" type="text" value="ddrole" name="ddrole"
+                                                autocomplete="off" class="form-control" width="100%">
+                                                <option selected value="">--select role--</option>
+                                                <option>Manager</option>
+                                                <option>Sales</option>
+                                                <option>Purchase</option>
+                                            </select>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="form-field">
+                                            <label for="ddbranch">Branch:</label>
+                                            <select id="ddbranch" type="text" value="ddbranch" name="ddbranch"
+                                                autocomplete="off" class="form-control" width="100%">
+                                                <option selected value="">--select branch--</option>
+                                                <option>Matuga</option>
+                                                <option>Maganjo</option>
+                                            </select>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="form-field">
+                                            <label for="file">Upload Photo:</label>
+                                            <h5 id="size" style="color: blue;"></h5>
+                                            <input type="file" id="file" onchange="return Filevalidation()"
+                                                class="form-control" />
+                                            <!-- Image preview -->
+                                            <div id="imagePreview"></div>
+                                            <small></small>
+                                        </div>
+                                        <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-6">
+                                <div class="card-box">
+                                    <div class="form-field">
+                                        <label for="email">Email:</label>
+                                        <input type="text" name="email" id="email" autocomplete="off">
+                                        <small></small>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" id="password" autocomplete="off">
+                                        <small></small>
+                                    </div>
+
+
+                                    <div class="form-field">
+                                        <label for="confirm-password">Confirm Password:</label>
+                                        <input type="password" name="confirm-password" id="confirm-password"
+                                            autocomplete="off">
+                                        <small></small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="submit" value="Update" class="btn-primary"
+                                        style="width: 50%; height: 40px; border-radius: 5px;">
+
+                                    </div>
+                                    <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <!-- content removed -->
+                </div>
+                <!-- end row -->
+
+            </div>
+
+        </div>
+        <!-- end container -->
+
+        <!-- start footer -->
+        <div id="footer"></div>
+        <!-- End footer -->
+    </div>
+    <!-- END wrapper -->
+    <script>
+        var select = document.getElementById('userdd');
+        var input = document.getElementById('username');
+        select.onchange = function() {
+            input.value = select.value;
+        }
+        </script>
+        <!-- js validation -->
+            <script src="../users/js/app_amend.js"></script>
+
+     <!-- Plugins  -->
+     <script src="../assets/js/jquery.min.js"></script>
+     <script src="../assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+     <script src="../assets/js/bootstrap.min.js"></script>
+     <script src="../assets/js/detect.js"></script>
+     <script src="../assets/js/fastclick.js"></script>
+     <script src="../assets/js/jquery.slimscroll.js"></script>
+     <script src="../assets/js/jquery.blockUI.js"></script>
+     <script src="../assets/js/waves.js"></script>
+     <script src="../assets/js/wow.min.js"></script>
+     <script src="../assets/js/jquery.nicescroll.js"></script>
+     <script src="../assets/js/jquery.scrollTo.min.js"></script>
+     <script src="../plugins/switchery/switchery.min.js"></script>
+     <script src="../assets/js/jquery.core.js"></script>
+     <script src="../assets/js/modernizr.min.js"></script>
+ 
+ 
+     <!-- Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am-->
+     <!-- <script src="../assets/js/jquery.app.js"></script>  -->
+     <script>
+         var resizefunc = [];
+     </script>
+ 
+     <!-- Begin Important for searhable dropdwn-->
+     <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+     <script
+         type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+     <!-- End Important for searhable dropdwn-->
+               
+</body>
+
+</html>

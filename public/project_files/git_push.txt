@@ -1,0 +1,5 @@
+git remote add karibu https://github.com/edwin-niwaha/karibu_groceries.git
+git status
+git add .
+git commit -m "git push cmds"
+git push -u karibu main

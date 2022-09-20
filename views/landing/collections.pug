@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Karibu Groceries | Shop
+    link(rel='stylesheet' href='/styles/src/style.css')
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css')
+    // load fontawesome cdn
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css' integrity='sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7' crossorigin='anonymous')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer')
+  body(style='background-color:rgb(0, 191, 255)')
+    // start navbar
+    .navbar
+      a(href='/collections')
+        h2 Karibu Groceries | Shop
+      .navbar-nav
+        a.nav-item.nav-link.active(href='/index') Home
+        |  |
+        a.nav-link(href='/login')
+          i.fa-solid.fa-lock(style='color: white')
+          |  Login
+      a(href='/landing/cart')
+        .cart
+          i.bi.bi-cart2
+          #cartAmount.cartAmount 0
+    // end nabar
+    #shop.shop
+    script(src='/javascript/src/Data.js')
+    script(src='/javascript/src/main.js')
+    script(src='')

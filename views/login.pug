@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Karibu Groceries | Login
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    link(href='styles/loginStyle.css' rel='stylesheet')
+  body
+    .wrapper
+      .logo
+        img(src='/images/rsz_karibu-logo_.png' alt='')
+      .text-center.mt-4.name
+        | Karibu Groceries Ltd
+      form.p-3.mt-3(method='POST' action='/login' name='login')
+        .form-field.d-flex.align-items-center
+          span.far.fa-user
+          input#email(type='text' name='email' placeholder='Username' required='')
+        .form-field.d-flex.align-items-center
+          span.fas.fa-key
+          input#password(type='password' name='password' placeholder='Password' required='')
+        input.btn.mt-3(type='submit' value='Login')
+      .text-center.fs-6
+        a(href='/contact') Forgot your password?
+        |  | 
+        a(href='/contact') contact the Admin

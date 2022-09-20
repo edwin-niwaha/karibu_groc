@@ -1,0 +1,93 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Sales List
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx' crossorigin='anonymous')
+    link(rel="stylesheet" href="/styles/main_ion.css")
+  body
+    .container-fluid
+      h5 Sales List &nbsp;
+          a.btn.btn-primary(href='/add_sales') Back
+          .d-md-flex.justify-content-md-end
+            button.position-absolute.top-0.end-0.btn.btn-warning(type='button')
+              a(href="/logout/") Sign Out
+      div(style='position: absolute; left: 14%; top: 0%; width: 10%;')
+        button.btn.btn-primary(type='button' onclick='PrintTable();') 
+          ion-icon(name='print-outline')
+      div(style='position: absolute; left: 19%; top: 0%; width: 10%;')      
+        button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
+          ion-icon(name='download-outline')
+      div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
+        #searchBtn.input-group
+          .form-outline
+            input#form1.form-control(type='search' name='prodname' placeholder='Search by produce name')
+          button#SBtn.btn.btn-primary(type='button') Search
+            i.fa.fa-search          
+      hr 
+      #dvContents
+      if Sales.length
+        table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
+          thead.table-dark
+            tr
+                th(scope='col') Produce name
+                th(scope='col') Ref no:
+                th(scope='col' style='text-align: right;') Tonnage(kgs)
+                th(scope='col' style='text-align: right;') Unit price
+                th(scope='col' style='text-align: right;') Amount paid(UgX)
+                th(scope='col') Buyer's name
+                th(scope='col') Entered by:
+                th(scope='col') Branch
+                th(scope='col') Sale date
+                th(scope='col') Time
+                th(scope='col') Status
+                th(scope='col') Action
+                th(scope='col')
+          tbody
+          each Sale in Sales
+            tr
+                td #{Sale.prodname}
+                td #{Sale.refno} 
+                td(style='text-align: right;') #{Sale.tonn}
+                td(style='text-align: right;') #{Sale.unitprice}
+                td(style='text-align: right;') #{Sale.amtpd}
+                td #{Sale.ddbuyer}
+                td #{Sale.salesagent}
+                td #{Sale.ddbranch}
+                td #{moment(Sale.sdate).format("DD-MM-YYYY")}   
+                td #{moment(Sale.updatedAt).format("(HH:MM:SS)")}  
+                td #{Sale.trans_type}                              
+                td
+                  a.edit(href='/salesUpdate/'+Sale._id)
+                    ion-icon(name='create-outline')
+                td
+                  form(method="POST", action="/sales_list")
+                      input(type="hidden", name="_id", value=Sale._id)
+                      button.btn.btn-primary(type='submit')
+                        ion-icon(name='trash-outline')
+          tfoot(style='background-color:#008080; color:white')
+            tr
+                td(scope='col') Totals:
+                td
+                td(scope='col' style='text-align: right;') #{totalSales.totalTonn}
+                td(scope='col' style='text-align: right;') #{totalSales.totalUnit}
+                td(scope='col' style='text-align: right;') #{totalSales.totalAmt}
+                td 
+                td 
+                td 
+                td 
+                td 
+                td 
+                td  
+                td            
+      else
+        p There are no records to display
+    script(src='/javascript/printSales.js')
+    script(type='text/javascript' src='https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js' integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa' crossorigin='anonymous')
+    script(type='text/javascript' src='http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js')
+    script(type='text/javascript' src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script( type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js")

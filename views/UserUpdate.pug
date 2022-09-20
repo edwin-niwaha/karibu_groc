@@ -1,0 +1,242 @@
+doctype html
+html(lang='en-US')
+  head
+    title Karibu Groceries | Register User
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(http-equiv='content-type' content='text/html;charset=utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    link(href='/plugins/switchery/switchery.min.css' rel='stylesheet')
+    link(href='/plugins/morris/morris.css' rel='stylesheet')
+    link(href='/styles/assets/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+    link(href='/styles/assets/css/icons.css' rel='stylesheet' type='text/css')
+    link(href='/styles/assets/css/style.css' rel='stylesheet' type='text/css')
+    link(href='/styles/Style/chosen.css' rel='stylesheet')
+    // Important for searhable dropdwn
+    link(href='/styles/css/frmsStyle.css' rel='stylesheet')
+    // load fontawesome cdn
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css' integrity='sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7' crossorigin='anonymous')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer')
+    // include header.html
+    // source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages
+    script(src='/javascript/js_header/jquery-3.3.1.js')
+    script.
+      $(function () {
+      $("#header").load("/assets/js_header/headerManager.html");
+      $("#footer").load("/assets/js_header/footer.html");
+      });
+  body.fixed-left
+    // Begin page
+    #wrapper
+      // Top Bar Start
+      .topbar
+        // LOGO
+        .topbar-left
+          .text-center
+            a.logo(href='#')
+              i.mdi.mdi-radar
+              span
+                | Karibu
+                | groceries
+        nav.navbar-custom
+          ul.list-inline.float-right.mb-0
+            li.list-inline-item.notification-list.hide-phone
+              a#btn-fullscreen.nav-link.waves-light.waves-effect(href='#')
+                i.mdi.mdi-crop-free.noti-icon
+            li.list-inline-item.notification-list
+              a.nav-link.right-bar-toggle.waves-light.waves-effect(href='#')
+                i.mdi.mdi-dots-horizontal.noti-icon
+            li.list-inline-item.dropdown.notification-list
+              a.nav-link.dropdown-toggle.arrow-none.waves-light.waves-effect(data-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false')
+                i.mdi.mdi-bell.noti-icon
+            li.list-inline-item.dropdown.notification-list
+              a.nav-link.dropdown-toggle.waves-effect.waves-light.nav-user(data-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false')
+                img.rounded-circle(src='../assets/images/pendeza_logo.png' alt='user')
+              .dropdown-menu.dropdown-menu-right.profile-dropdown(aria-labelledby='Preview')
+                // item
+                .dropdown-item.noti-title
+                  h6.text-overflow
+                    small
+                      | Welcome ! 
+                      asp:label#Label1(runat='server' text='Label')
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-account
+                  span Profile
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-settings
+                  span Settings
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-lock-open
+                  span Lock Screen
+                // item
+                a.dropdown-item.notify-item(href='/logout')
+                  i.mdi.mdi-logout
+                  span Logout
+          ul.list-inline.menu-left.mb-0
+            li.float-left
+              button.button-menu-mobile.open-left.waves-light.waves-effect
+                i.mdi.mdi-menu
+            li.hide-phone.app-search
+              //
+                <form role="search" class="">
+                <input type="text" placeholder="Search..." class="form-control">
+                <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+      // Top Bar End
+      // ========== Left Sidebar Start ========== Pro
+      #header.left.side-menu
+      // ========== Left Sidebar End ========== Pro
+      // ==============================================================
+      // Start right Content here
+      // ==============================================================
+      .content-page
+        // Start content
+        .content
+          .container-fluid
+            // Left Sidebar End
+            // ==============================================================
+            // Page-Title
+            .row
+              .col-sm-12
+                .page-title-box
+                  h4.page-title
+                    | Welcome ! 
+                    b #{username} |
+                  ol.breadcrumb.float-right
+                    | Branch:&nbsp;  
+                    b #{branch} &nbsp;|&nbsp;               
+                    | Role:&nbsp;  
+                    b #{role} &nbsp;|&nbsp;
+                    | Email:&nbsp;  
+                    b #{email} &nbsp;&nbsp;
+                    li.breadcrumb-item
+                      a(href='#') Update User details
+                    li.breadcrumb-item
+                      a(href='/ulist') List                    
+                  .clearfix
+            form#userRegfrm.form(action = "/updateUsers?id="+Signup._id  method="POST")                            
+              .row
+                .col-md-6
+                  .card-box
+                    .form-horizontal(role='form')
+                      div
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='firstname') First Name:
+                              th   
+                              th
+                                label(for='surname') Surname:
+                            tr
+                              td.form-field
+                                input#firstname(type='text' name='firstname' autocomplete='off' style='width: 100%;' value=Signup.firstname)
+                                small
+                              td
+                              td.form-field
+                                input#surname(type='text' name='surname' autocomplete='off' style='width: 100%;' value=Signup.surname)
+                                small
+                            tr
+                              td.form-field(colspan='3')
+                                label(for='email') Email:
+                                input#email(type='text' name='email' autocomplete='off' value=Signup.email)
+                                small
+                      div
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='password') Password:
+                              th
+                              th
+                                label(for='confirm-password') Confirm Password:
+                            tr
+                              td.form-field
+                                input#password(type='password' name='password' autocomplete='off' value=Signup.password)
+                                small
+                              td  
+                              td.form-field
+                                input#confirm-password(type='password' name='confirm-password' autocomplete='off')
+                                small                      
+                // end col
+                .col-md-6
+                  .card-box   
+                    table.table-responsive
+                      tbody
+                        tr
+                          th
+                            label(for='role') User role:
+                          th &nbsp;&nbsp;
+                          th
+                            label(for='xx') 
+                        tr
+                          td.form-field
+                            select#role.form-control(type='text' name='role' autocomplete='off' style='width: 100%;')
+                              option(selected='' value='') --select user role--
+                              //- each role_ in roleAll
+                              //-   option(value=role_.role) #{role_.role}
+                              option(value='director') Director
+                              option(value='manager') Manager
+                              option(value='agent') Sales Agent
+                              option(value='inactive') Deactivate A/C
+                            small
+                          td &nbsp;&nbsp;
+                          td.form-field
+                              input#rolex(type='text' name='rolex' style='width: 100%; border: none;' value=Signup.role readonly)                              
+                    table.table-responsive
+                      tbody
+                        tr
+                          th
+                            label(for='role') User Branch:
+                          th &nbsp;&nbsp;
+                          th
+                            label(for='xx') 
+                        tr
+                          td.form-field
+                            select#ddbranch.form-control(type='text' name='ddbranch' autocomplete='off' style='width: 100%;')
+                              option(selected='' value='') ---select branch---
+                              each brn in branchN
+                                option(value=brn.branchName) #{brn.branchName}
+                            small
+                          td &nbsp;&nbsp;
+                          td.form-field
+                              input#ddbranchx(type='text' name='ddbranchx' style='width: 100%; border: none;' value=Signup.ddbranch readonly)
+                    .mb-3
+                      input.btn-primary(type='submit' value='Update' style='width: 50%; height: 40px; border-radius: 5px;')
+          // end row
+          // end container
+          // start footer
+        #footer
+        // End footer
+        // END wrapper
+        // Plugins
+        script(src='/assets/js/jquery.min.js')
+        script(src='/assets/js/popper.min.js')
+        // Popper for Bootstrap
+        script(src='/assets/js/bootstrap.min.js')
+        script(src='/assets/js/detect.js')
+        script(src='/assets/js/fastclick.js')
+        script(src='/assets/js/jquery.slimscroll.js')
+        script(src='/assets/js/jquery.blockUI.js')
+        script(src='/assets/js/waves.js')
+        script(src='/assets/js/wow.min.js')
+        script(src='/assets/js/jquery.nicescroll.js')
+        script(src='/assets/js/jquery.scrollTo.min.js')
+        script(src='/plugins/switchery/switchery.min.js')
+        script(src='/assets/js/jquery.core.js')
+        script(src='/assets/js/modernizr.min.js')
+        // Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am
+        // <script src="../assets/js/jquery.app.js"></script>
+        script.
+            var resizefunc = [];
+        // Begin Important for searhable dropdwn
+        script(src='/javascript/Scripts/chosen.jquery.js' type='text/javascript')
+        script(type='text/javascript').
+            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+        // End Important for searhable dropdwn
+        // for validation
+        script(src='/javascript/useRegUpdateVal.js')

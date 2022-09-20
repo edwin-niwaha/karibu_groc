@@ -1,0 +1,9 @@
+extends layout 
+block content 
+    each item in images
+        .card(style='width: 18rem;')
+            .card-body
+                h5.card-title #{item.image}
+                img.card-img-top(src=item.image alt='...')
+                p.card-text With supporting
+                a.btn.btn-primary(href='#') Go somewhere

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Karibu Groceries | Add Sales</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../sales/js/table.js"></script>
+    <style>
+        /* I just do to hidden the table, because i struggle with JS file :)) */
+
+        #divTable {
+            display: none;
+            width: 100%;
+        }
+
+        #tableScore th:nth-child(6),
+        #tableScore td:nth-child(6) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Class Marksheet</h1>
+
+    <!--
+        This is a form for users to enter scores
+        -->
+    <table align="center">
+        <tr>
+            <td>Name:</td>
+            <td><input name="name" id="name" type="text" /></td>
+        </tr>
+
+        <tr>
+            <td>Math:</td>
+            <td><input name="math" id="math" type="number" /></td>
+        </tr>
+
+        <tr>
+            <td>Physics:</td>
+            <td><input name="physics" id="physics" type="number" /></td>
+        </tr>
+
+        <tr>
+            <td>Chemistry:</td>
+            <td><input name="chemical" id="chemical" type="number" /></td>
+        </tr>
+
+        <td>
+            <button type="submit" onclick="score_table()">Submit</button>
+        </td>
+    </table>
+
+    <!--
+        This table below must not show when user access the browser, 
+        it only show after user enter score and click the "Submit" button with 2 button below
+        -->
+    <div id="divTable">
+        <table id="tableScore" border="2">
+            <th>No</th>
+            <th>Name</th>
+            <th>Math</th>
+            <th>Physics</th>
+            <th>Chemistry</th>
+            <th>Average Score</th>
+            <!-- This still can not show -->
+        </table>
+
+        <button onclick="showAvg()">Show the average score</button>
+        <!--This will show the average score column-->
+        <button onclick="showBest()">Best student</button>
+        <!--Determine if any average score >= 8 hightlight all the text into red-->
+    </div>
+</body>
+
+</html>
+
+</body>
+
+</html>

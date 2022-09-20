@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--load fontawesome cdn-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+<body class="fixed-left">
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- ========== Left Sidebar Start ========== Pro-->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="../managerDash" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span>Dashboard</span>
+                                <span class="badge badge-primary pull-right">#</span>
+                            </a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="fa-solid fa-cash-register"></i> <span> Purchases</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="/add_purch/" target="_self">New Purchase</a></li>
+                                <li><a href="/purch_list/" target="_self">Purchase List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary"><i
+                                    class="ti-shopping-cart-full" aria-hidden="true"></i><span> Sales</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="/add_sales/" target="_self">New Cash Sales</a></li>
+                                <li><a href="/sales_list/" target="_self">Cash Sales List</a></li>
+                                <li><a href="/creditSales/" target="_self">Credit Sales</a></li>
+                                <li><a href="/credit_list/" target="_self">Credit Sales List</a></li>                           
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary"><i
+                                    class="fa fa-list-alt" aria-hidden="true"></i><span> Items </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="/add_item" target="_self">New Items</a></li>
+                                <li><a href="/items_list" target="_self">Items List</a></li>
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="fa fa-users"></i> <span> Users </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="/signUp" target="_self">Register User</a></li>
+                                <li><a href="/ulist" target="_self">User Account Mgt</a></li>
+                                <li><a href="/feedback" target="_self">Users Feedback</a></li>                                                         
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end of left slide bar -->
+    </div>
+    <!-- end content -->
+    </div>
+</body>
+
+<!-- Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am-->
+<script src="/assets/js/jquery.app.js"></script>
+<!--feck link for the left navbar reponsive-->
+</html>

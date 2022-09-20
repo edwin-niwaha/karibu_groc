@@ -1,0 +1,219 @@
+doctype html
+html(lang='en-US')
+  head
+    title Karibu Groceries | Add Sales
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(http-equiv='content-type' content='text/html;charset=utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    link(href='/plugins/switchery/switchery.min.css' rel='stylesheet')
+    link(href='/plugins/morris/morris.css' rel='stylesheet')
+    link(href='/styles/assets/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+    link(href='/styles/assets/css/icons.css' rel='stylesheet' type='text/css')
+    link(href='/styles/assets/css/style.css' rel='stylesheet' type='text/css')
+    link(href='/styles/Style/chosen.css' rel='stylesheet')
+    // Important for searhable dropdwn
+    link(href='/styles/css/frmsStyle.css' rel='stylesheet')
+    // load fontawesome cdn
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css' integrity='sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7' crossorigin='anonymous')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer')
+    // include header.html
+    // source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages
+    script(src='/javascript/js_header/jquery-3.3.1.js')
+    script.
+      $(function () {
+      $("#header").load("/assets/js_header/headerManager.html");
+      $("#footer").load("/assets/js_header/footer.html");
+      });
+  body.fixed-left
+    // Begin page
+    #wrapper
+      // Top Bar Start
+      .topbar
+        // LOGO
+        .topbar-left
+          .text-center
+            a.logo(href='#')
+              i.mdi.mdi-radar
+              span
+                | Karibu
+                | groceries
+        nav.navbar-custom
+          ul.list-inline.float-right.mb-0
+            li.list-inline-item.notification-list.hide-phone
+              a#btn-fullscreen.nav-link.waves-light.waves-effect(href='#')
+                i.mdi.mdi-crop-free.noti-icon
+            li.list-inline-item.notification-list
+              a.nav-link.right-bar-toggle.waves-light.waves-effect(href='#')
+                i.mdi.mdi-dots-horizontal.noti-icon
+            li.list-inline-item.dropdown.notification-list
+              a.nav-link.dropdown-toggle.arrow-none.waves-light.waves-effect(data-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false')
+                i.mdi.mdi-bell.noti-icon
+            li.list-inline-item.dropdown.notification-list
+              a.nav-link.dropdown-toggle.waves-effect.waves-light.nav-user(data-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false')
+                img.rounded-circle(src='../assets/images/pendeza_logo.png' alt='user')
+              .dropdown-menu.dropdown-menu-right.profile-dropdown(aria-labelledby='Preview')
+                // item
+                .dropdown-item.noti-title
+                  h6.text-overflow
+                    small
+                      | Welcome ! 
+                      asp:label#Label1(runat='server' text='Label')
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-account
+                  span Profile
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-settings
+                  span Settings
+                // item
+                a.dropdown-item.notify-item(href='javascript:void(0);')
+                  i.mdi.mdi-lock-open
+                  span Lock Screen
+                // item
+                a.dropdown-item.notify-item(href='/logout')
+                  i.mdi.mdi-logout
+                  span Logout
+          ul.list-inline.menu-left.mb-0
+            li.float-left
+              button.button-menu-mobile.open-left.waves-light.waves-effect
+                i.mdi.mdi-menu
+            li.hide-phone.app-search
+              //
+                <form role="search" class="">
+                <input type="text" placeholder="Search..." class="form-control">
+                <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+      // Top Bar End
+      // ========== Left Sidebar Start ========== Pro
+      #header.left.side-menu
+      // ========== Left Sidebar End ========== Pro
+      // ==============================================================
+      // Start right Content here
+      // ==============================================================
+      .content-page
+        // Start content
+        .content
+          .container-fluid
+            // Left Sidebar End
+            // ==============================================================
+            // Page-Title
+            .row
+              .col-sm-12
+                .page-title-box
+                  h4.page-title
+                    | Welcome ! 
+                    b #{username} |
+                  ol.breadcrumb.float-right
+                    | Branch:&nbsp;  
+                    b #{branch} &nbsp;|&nbsp;               
+                    | Role:&nbsp;  
+                    b #{role} &nbsp;|&nbsp;
+                    | Email:&nbsp;  
+                    b #{email} &nbsp;|&nbsp;
+                    li.breadcrumb-item
+                      a(href='/add_sales') Sales
+                    li.breadcrumb-item
+                      a(href='/sales_list') Sales List
+                    li.breadcrumb-item
+                      a(href='/credit_sales')
+                  .clearfix
+            form#salesfrm.form(action = "/salesUpdate?id="+Sale._id  method="POST")         
+              .row
+                .col-md-6
+                  .card-box
+                    .form-horizontal(role='form')
+                      .form-field
+                        label(for='prodname')
+                          | Name of the produce: #{prodname}
+                          span.input-group-addon.pointer(data-toggle='modal' data-target='#exampleModal' title='Add Item?')
+                            i.fa.fa-plus-square-o.text-primary.fa-lg
+                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                          option(value='' selected='') --search the item name--
+                          each pdc in produce
+                            option(value=pdc.prodname) #{pdc.prodname}
+                        small
+                        input#lbl(type='text' name='lbl' style='width: 40%; font-weight:bold; border: none;' value=Sale.prodname)
+                        hr
+                      div
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='tonn') Tonnage(kgs):
+                              th
+                                label(for='unitprice') Price per Kg:
+                            tr
+                              td.form-field
+                                input#tonn.form-group(type='text' name='tonn' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' value=Sale.tonn)
+                                small
+                              td.form-field
+                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' value=Sale.unitprice)
+                                small
+                      .form-field
+                        label(for='amtpd') Total Amount Paid(UgX):
+                        input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value=Sale.amtpd readonly)
+                        small
+                      .form-field
+                        label(for='ddbuyer')
+                          | Name of the buyer:
+                        input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);' value=Sale.ddbuyer)
+                        small#lblError(style='color: red')
+                        small
+                // end col
+                .col-md-6
+                  .card-box
+                    .form-field
+                      label(for='salesagent')
+                        | Sales Agent:
+                        span.input-group-addon.pointer(data-toggle='modal' data-target='#customer-modal' title='Add Sales Agent?')
+                          i.fa.fa-user-plus.text-primary.fa-lg
+                      input#salesagent(type='text' name='salesagent' autocomplete='off' onkeypress='return ValidateSales(event);' value=Sale.salesagent readonly)
+                      small#lblError1(style='color: red')
+                      small
+                    .form-field
+                      label(for='sdate') Sales Date:
+                      input#sdate.form-control.pull-right.datepicker(type='date' name='sdate' value=Sale.sdate)
+                      small
+                    .form-field
+                      label(for='refno') Reference No:
+                      input#refno(type='text' name='refno' autocomplete='off' value=Sale.refno)
+                      small
+                    .mb-3
+                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash-sale" readonly hidden)
+                      input.btn-primary(type='submit' value='Update' style='width: 50%; height: 40px; border-radius: 5px;')
+          // end row
+          // end container
+          // start footer
+        #footer
+        // End footer
+        // END wrapper
+        // Plugins
+        script(src='/assets/js/jquery.min.js')
+        script(src='/assets/js/popper.min.js')
+        // Popper for Bootstrap
+        script(src='/assets/js/bootstrap.min.js')
+        script(src='/assets/js/detect.js')
+        script(src='/assets/js/fastclick.js')
+        script(src='/assets/js/jquery.slimscroll.js')
+        script(src='/assets/js/jquery.blockUI.js')
+        script(src='/assets/js/waves.js')
+        script(src='/assets/js/wow.min.js')
+        script(src='/assets/js/jquery.nicescroll.js')
+        script(src='/assets/js/jquery.scrollTo.min.js')
+        script(src='/plugins/switchery/switchery.min.js')
+        script(src='/assets/js/jquery.core.js')
+        script(src='/assets/js/modernizr.min.js')
+        // Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am
+        // <script src="../assets/js/jquery.app.js"></script>
+        script.
+            var resizefunc = [];
+        // Begin Important for searhable dropdwn
+        script(src='/javascript/Scripts/chosen.jquery.js' type='text/javascript')
+        script(type='text/javascript').
+            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+        // End Important for searhable dropdwn
+        // for validation
+        script(src='/javascript/salesVal.js')

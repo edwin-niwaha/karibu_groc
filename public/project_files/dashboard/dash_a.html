@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Karibu Groceries | Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../assets/img/favicons/favicon-32x32.png">
+    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="../plugins/morris/morris.css" rel="stylesheet">
+
+    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="../plugins/jquery-circliful/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="../assets/js/modernizr.min.js"></script>
+
+    <link rel="stylesheet" href="../Style/chosen.css" /><!-- Important for searhable dropdwn-->
+    <link rel="stylesheet" href="../users/css/style.css">
+
+    <!--load fontawesome cdn-->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--load fontawesome cdn-->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- include header.html -->
+    <!-- source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages -->
+    <script src="../js_header/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../header.html");
+            $("#footer").load("../footer.html");
+        });
+    </script>
+
+</head>
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="./dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu
+                            groceries</span></a>
+                </div>
+            </div>
+
+            <nav class="navbar-custom">
+
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item notification-list">
+                        <a class="nav-link right-bar-toggle waves-light waves-effect" href="#">
+                            <i class="mdi mdi-dots-horizontal noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="mdi mdi-bell noti-icon"></i>
+
+                        </a>
+
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="../assets/images/pendeza_logo.png" alt="user" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h6 class="text-overflow"><small>Welcome ! <asp:Label ID="Label1" runat="server"
+                                            Text="Label"></asp:Label></small> </h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account"></i> <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-settings"></i> <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="../authentication/simple/logout.html" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout"></i> <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search">
+                        <!-- <form role="search" class="">
+                            <input type="text" placeholder="Search..." class="form-control">
+                            <a href="#"><i class="fa fa-search"></i></a>
+                        </form> -->
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== Pro-->
+        <div id="header" class="left side-menu">
+        </div>
+        <!-- ========== Left Sidebar End ========== Pro-->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Left Sidebar End -->
+                    <!-- ============================================================== -->
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">Welcome
+                                    &nbsp;|&nbsp;
+                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Edwin
+                                    </asp:Label>
+                                </h4>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item"><a href="./dash_a.html">Karibu Groceries</a></li>
+                                    <li class="breadcrumb-item active"><a href="./dash_a.html">Dashboard</a></li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="regform" class="form">
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget-simple-chart text-right card-box">
+                                    <div class="circliful-chart" data-dimension="90" data-text="2" data-width="5"
+                                        data-fontsize="14" data-percent="2" data-fgcolor="#5fbeaa"
+                                        data-bgcolor="#ebeff2"></div>
+                                    <h3 class="text-success counter m-t-10">2</h3>
+                                    <p class="text-muted text-nowrap m-b-10">Branches</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget-simple-chart text-right card-box">
+                                    <div class="circliful-chart" data-dimension="90" data-text="4" data-width="5"
+                                        data-fontsize="14" data-percent="4" data-fgcolor="#3bafda"
+                                        data-bgcolor="#ebeff2"></div>
+                                    <h3 class="text-primary counter m-t-10">4</h3>
+                                    <p class="text-muted text-nowrap m-b-10">Attendants</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget-simple-chart text-right card-box">
+                                    <div class="circliful-chart" data-dimension="90" data-text="58%" data-width="5"
+                                        data-fontsize="14" data-percent="58" data-fgcolor="#f76397"
+                                        data-bgcolor="#ebeff2"></div>
+                                    <h3 class="text-pink m-t-10">UgX <span class="counter">20,000</span></h3>
+                                    <p class="text-muted text-nowrap m-b-10">Total Sales</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget-simple-chart text-right card-box">
+                                    <div class="circliful-chart" data-dimension="90" data-text="49%" data-width="5"
+                                        data-fontsize="14" data-percent="49" data-fgcolor="#98a6ad"
+                                        data-bgcolor="#ebeff2"></div>
+                                    <h3 class="text-pink m-t-10">UgX <span class="counter">35,000</span></h3>
+                                    <p class="text-muted text-nowrap m-b-10">Total Purchases</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <h4 class="text-dark header-title m-t-0 m-b-30" style="color: teal !important;">
+                                        Daily Sales @ Branch</h4>
+                                    <div class="widget-chart text-center">
+                                        <div id="sparkline3_"></div>
+                                        <ul class="list-inline m-t-15 mb-0">
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Maganjo</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">20,000</h4>
+                                            </li>
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Matugga</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">30,000</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <h4 class="text-dark header-title m-t-0 m-b-30" style="color: teal !important;">
+                                        Monthly Sales @ Branch</h4>
+                                    <div class="widget-chart text-center">
+                                        <div id="sparkline"></div>
+                                        <ul class="list-inline m-t-15 mb-0">
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Maganjo</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">40,000</h4>
+                                            </li>
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Matugga</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">50,000</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <h4 class="text-dark header-title m-t-0 m-b-30" style="color: teal !important;">
+                                        Yearly Sales @ Branch</h4>
+                                    <div class="widget-chart text-center">
+                                        <div id="sparkline3_"></div>
+                                        <ul class="list-inline m-t-15 mb-0">
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Maganjo</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">60,000</h4>
+                                            </li>
+                                            <li>
+                                                <h5 class="text-muted m-t-20">Matugga</h5>
+                                                UgX<h4 class="m-b-0" style="color: blue;">70,000</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </form>
+                </div>
+
+                <div class="row">
+                    <footer class="footer">
+                        &copy; 2022 - <span class="hide-phone">
+                            <asp:Label ID="Labelyear" runat="server"
+                                style="color: #0033CC; font-style: italic; font-weight: 700">
+                            </asp:Label> Karibu groceries - <a href="http://www.perpetualict.com"
+                                target="_blank">crafted by <img src="../images/footer_logo.png" height="20"
+                                    width="20" /></a>
+                        </span> | All Rights Reserved
+                    </footer>
+                </div>
+                <!-- end row -->
+
+            </div>
+
+        </div>
+        <!-- end container -->
+
+        <!-- start footer -->
+        <div id="footer"></div>
+        <!-- End footer -->
+    </div>
+    <!-- END wrapper -->
+    <!-- Plugins  -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/detect.js"></script>
+    <script src="../assets/js/fastclick.js"></script>
+    <script src="../assets/js/jquery.slimscroll.js"></script>
+    <script src="../assets/js/jquery.blockUI.js"></script>
+    <script src="../assets/js/waves.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/jquery.nicescroll.js"></script>
+    <script src="../assets/js/jquery.scrollTo.min.js"></script>
+    <script src="../plugins/switchery/switchery.min.js"></script>
+    <script src="../assets/js/jquery.core.js"></script>
+    <script src="../assets/js/modernizr.min.js"></script>
+
+    <!-- Counter Up  -->
+    <script src="../plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="../plugins/counterup/jquery.counterup.min.js"></script>
+
+    <!-- circliful Chart -->
+    <script src="../plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+    <script src="../plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- skycons -->
+    <script src="../plugins/skyicons/skycons.min.js" type="text/javascript"></script>
+
+    <!-- Page js  -->
+    <script src="../assets/pages/jquery.dashboard.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1200
+            });
+            $('.circliful-chart').circliful();
+        });
+    </script>
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- Begin Important for searhable dropdwn-->
+    <script src="../Scripts/chosen.jquery.js" type="text/javascript"></script>
+    <script
+        type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
+    <!-- End Important for searhable dropdwn-->
+
+    <script>
+        $(document).on('click', 'button.deleteRow', function (event) {
+            $(this).closest("tr").remove();
+        });
+    </script>
+
+    <!-- for the form popup -->
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
