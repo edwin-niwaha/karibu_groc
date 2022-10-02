@@ -18,6 +18,7 @@ html(lang='en-US')
     link(rel='stylesheet' href='/styles/Style/chosen.css')
     // Important for searhable dropdwn
     link(rel='stylesheet' href='/styles/users/css/style.css')
+    link(rel='stylesheet' href='/styles/Style/cardhover.css')
     // load fontawesome cdn
     link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css' integrity='sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7' crossorigin='anonymous')
     link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer')
@@ -124,59 +125,55 @@ html(lang='en-US')
             form#regform.form
               .row
                 .col-sm-4.col-lg-4
-                  .widget-simple-chart.text-right.card-box
-                    .circliful-chart(data-dimension='100' data-width='5' data-fontsize='14' data-percent='100' data-fgcolor='#f76397' data-bgcolor='#ebeff2')
-                    h3.text-pink.m-t-10
+                  .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
+                    h3.text-white.m-t-10
+                      | UgX: 
+                      span.counter #{totalSales.totalAmt}
+                    p.text-black.text-nowrap.m-b-10 TOTAL CASH SALES             
+                .col-sm-4.col-lg-4
+                  .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
+                    h3.text-white.m-t-10
                       | UgX: 
                       span.counter #{totalPurchase.totalCost}
-                    p.text-muted.text-nowrap.m-b-10 TOTAL PURCHASES
+                    p.text-black.text-nowrap.m-b-10 TOTAL PURCHASES
                 .col-sm-4.col-lg-4
-                  .widget-simple-chart.text-right.card-box
-                    .circliful-chart(data-dimension='100' data-width='5' data-fontsize='14' data-percent='100' data-fgcolor='#98a6ad' data-bgcolor='#ebeff2')
-                    h3.text-pink.m-t-10
+                  .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
+                    h3.text-white.m-t-10
                       | UgX: 
-                      span.counter #{totalSales.totalAmt}
-                    p.text-muted.text-nowrap.m-b-10 TOTAL CASH SALES
-                .col-sm-4.col-lg-4
-                  .widget-simple-chart.text-right.card-box
-                    .circliful-chart(data-dimension='100' data-width='5' data-fontsize='14' data-percent='100' data-fgcolor='#98a6ad' data-bgcolor='#ebeff2')
-                    h3.text-pink.m-t-10
-                      | UgX: 
-                      span.counter #{totalSales.totalAmt}
-                    p.text-muted.text-nowrap.m-b-10 TOTAL CREDIT SALES 
-                    p Difference #{totalPurchase.totalCost - totalSales.totalAmt}
+                      span.counter #{totalCreditSales.totalCreditAmt}
+                    p.text-black.text-nowrap.m-b-10 TOTAL CREDIT SALES             
               // end row
               .row
                 .col-lg-6
-                  .card-box
-                    h4.text-dark.header-title.m-t-0.m-b-30(style='color: teal !important;')
-                      | TOTAL PURCHASES @ Branch
+                  .card-box(style='background-color:#40E0D0')
+                    h4.text-dark.header-title.m-t-0.m-b-30(style='color: #fff !important;')
+                      | Total Cash Sales @ Branch
                     .widget-chart.text-center
                       #sparkline3_
                       ul.list-inline.m-t-15.mb-0
                         li
-                          h5.text-muted.m-t-20 Kampala
+                          h5.text-white.m-t-20 Kampala
                           |                                                 UgX
-                          h4.m-b-0(style='color: blue;') 200,000
+                          h4.m-b-0(style='color: blue;') #{totalSalesKlaBr.totalAmtKla}
                         li
-                          h5.text-muted.m-t-20 Kabale
+                          h5.text-white.m-t-20 Kabale
                           |                                                 UgX
-                          h4.m-b-0(style='color: blue;') 300,000
+                          h4.m-b-0(style='color: blue;') #{totalSalesKleBr.totalAmtKle}
                 .col-lg-6
-                  .card-box
-                    h4.text-dark.header-title.m-t-0.m-b-30(style='color: teal !important;')
-                      | Total Sales @ Branch
+                  .card-box(style='background-color:#40E0D0')
+                    h4.text-dark.header-title.m-t-0.m-b-30(style='color: #fff !important;')
+                      | Total Credit Sales @ Branch
                     .widget-chart.text-center
                       #sparkline3_
                       ul.list-inline.m-t-15.mb-0
                         li
-                          h5.text-muted.m-t-20 Kampala
+                          h5.text-white.m-t-20 Kampala
                           |                                                 UgX
-                          h4.m-b-0(style='color: blue;') 600,000
+                          h4.m-b-0(style='color: blue;') #{totalCreditSalesKla.totalCreditAmt}
                         li
-                          h5.text-muted.m-t-20 Kabale
+                          h5.text-white.m-t-20 Kabale
                           |                                                 UgX
-                          h4.m-b-0(style='color: blue;') 700,000
+                          h4.m-b-0(style='color: blue;') #{totalCreditSalesKle.totalCreditAmt}
               // end row
           .row
             footer.footer

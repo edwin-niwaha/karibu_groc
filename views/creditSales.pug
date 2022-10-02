@@ -175,14 +175,14 @@ html(lang='en-US')
                                 label(for='tonn') Tonnage(kgs):
                               th &nbsp;&nbsp;
                               th
-                                label(for='unitprice') Price per Kg:
+                                label(for='unitprice') Unit price:
                             tr
                               td.form-field
                                 input#tonn.form-group(type='text' name='tonn' value='0' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
                                 small
                               td &nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();')
+                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' readonly)
                                 small                                                   
                         table.table-responsive
                           tbody
@@ -200,28 +200,47 @@ html(lang='en-US')
                               td.form-field
                                 input#salesagent(type='text' name='salesagent' autocomplete='off' style="background-color:#C0C0C0; border-radius:5px" value=username readonly)
                                 small#lblError1(style='color: red')
-                                small                                                     
+                                small      
+                        table.table(hidden='hidden')
+                          tbody
+                            tr 
+                              td Puchased stock (kgs):
+                              td Cash Sales:
+                              td Credit Sales:
+                              td Available stock (kgs):
+                            tr
+                              td #{totalPurchase.totalPurchTonnage}
+                              td #{totalSales.totalSoldTonnage}
+                              td #{totalCreditSales.totalCreditTonn}
+                              td(style='color:blue') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}                                                        
                 // end col
                 .col-md-6
                   .card-box
                     .form-field
                       label(for='prodname')
                         | Name of the produce:
-                      select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                      select#prodname.chzn-select(value='prodname' name='prodname' style='width:92%')
                         option(value='' selected='') --search the item name--
                         each pdc in produce
-                          option(value=pdc.prodname) #{pdc.prodname}
-                      small                   
+                            option(value=pdc.prodname data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.unitprice) #{pdc.prodname}                            
+                      small   
                     .form-field
-                      label(for='produnane')
-                        | Type of produce:
-                      select#ddproduce.form-control(type='text' value='ddproduce' name='ddproduce' autocomplete='off' width='100%')
-                        option(selected='' value='') --select produce type--
-                        option(value='Breeder') Breeder 
-                        option(value='Nuclear') Nuclear   
-                        option(value='Foundation') Foundation
-                        option(value='Certified') Certified                        
-                      small
+                      table.table-responsive
+                        tbody
+                          tr
+                            th
+                              label(for='itemcat') Stock Keeping Unit:
+                            th &nbsp;&nbsp;
+                            th
+                              label(for='sku') Type of produce:
+                          tr
+                            td.form-field
+                                input#sku(type='text' name='sku' autocomplete='off' readonly)
+                                small
+                            td &nbsp;&nbsp;    
+                            td.form-field
+                                input#itemcat(type='text' name='itemcat' autocomplete='off' readonly)
+                                small                        
                       table.table-responsive
                         tbody
                           tr
@@ -240,6 +259,7 @@ html(lang='en-US')
                               small    
                     hr
                     .mb-3
+                      input#stockbal(type='text' name='stockbal' style='width: 40%; border: none;' value=totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn hidden)
                       input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="credit" readonly hidden)
                       input#ddbranch(type='text' name='ddbranch' style='width: 40%; border: none;' value=branch readonly hidden)
                       input.btn-primary(type='submit' value='Save' style='width: 50%; height: 40px; border-radius: 5px;')
@@ -277,3 +297,4 @@ html(lang='en-US')
         // End Important for searhable dropdwn
         // for validation
         script(src='/javascript/creditVal.js')
+        script(src='/javascript/fetchCreditSales.js')

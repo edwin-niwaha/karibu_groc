@@ -25,7 +25,7 @@ router.get("/add_item", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
         }
         catch (err) {
             console.log(err)
-            res.send("Oops! Access Denied, login to continue")
+            res.send("Oops!, Something went wrong.")
         }
     })
 
@@ -77,7 +77,12 @@ router.get("/UpdateItems/:id", connectEnsureLogin.ensureLoggedIn(),
     async (req, res) => {
         try {
             const updateItem = await itemsModel.findById({ _id: req.params.id })
-            res.render("itemsUpdate", { tb_Item: updateItem })
+            res.render("itemsUpdate", { tb_Item: updateItem,
+                username: req.user.firstname + " " + req.user.surname,
+                branch: req.user.ddbranch,
+                email: req.user.email,
+                role: req.user.role
+             })
 
         } catch (error) {
             res.status(400).send('Cannot find item');

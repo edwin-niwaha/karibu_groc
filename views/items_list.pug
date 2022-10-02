@@ -22,11 +22,7 @@ html(lang='en')
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
           ion-icon(name='download-outline')
       div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='itemName' placeholder='Search by item name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search                
+          input#myInput.form-control(type='text' onkeyup='searchFunc()' placeholder='Search by item name...' title='Type in a name')                                             
       hr
       if tb_Items.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
@@ -36,25 +32,25 @@ html(lang='en')
                     th(scope='col') Category
                     th(scope='col') SKU
                     th(scope='col') Expiry Date
-                    th(scope='col' style='text-align: right;') Cost Price
-                    th(scope='col' style='text-align: right;') Selling Price
-                    th(scope='col' style='text-align: right;') Profit(UgX)
-                    th(scope='col') Branch
-                    th(scope='col') Entered at
+                    th(scope='col' style='text-align: right;') Cost Price @Kg
+                    th(scope='col' style='text-align: right;') Selling Price @Kg
+                    th(scope='col') Supplier
+                    th(scope='col') Created at
+                    th(scope='col') Updated at
                     th(scope='col') Action
                     th(scope='col')
             tbody
             each tb_Item in tb_Items
                 tr
                     td #{tb_Item.itemName}
-                    td #{tb_Item.ddprodtype}
+                    td #{tb_Item.itemcat}
                     td #{tb_Item.sku}
                     td #{moment(tb_Item.sdate).format("DD-MM-YYYY")}
                     td(style='text-align: right;') #{tb_Item.costprice}
                     td(style='text-align: right;') #{tb_Item.sellprice}
-                    td(style='text-align: right;') #{tb_Item.profit_loss}
-                    td #{ddbranch}
-                    td #{moment(tb_Item.created_at).format("DD-MM-YYYY (HH:MM:SS)")}                    
+                    td #{tb_Item.supplier}
+                    td #{moment(tb_Item.createAt).format("DD-MM-YYYY")}
+                    td #{moment(tb_Item.updatedAt).format("DD-MM-YYYY")}                      
                     td 
                         a.edit(href='/UpdateItems/'+tb_Item._id)
                           ion-icon(name='create-outline')
@@ -71,7 +67,7 @@ html(lang='en')
                   td
                   td(scope='col' style='text-align: right;') #{totalItems.totalCostPrice}
                   td(scope='col' style='text-align: right;') #{totalItems.totalSellPrice}
-                  td(scope='col' style='text-align: right;') #{totalItems.totalProfit}
+                  td
                   td
                   td
                   td 

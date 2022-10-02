@@ -128,11 +128,28 @@ html(lang='en-US')
                       .form-field
                         label(for='prodname')
                           | Name of the produce:
-                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:92%')
                           option(value='' selected='') --search the item name--
                           each pdc in produce
-                            option(value=pdc.prodname) #{pdc.prodname}
+                            option(value=pdc.prodname data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.unitprice) #{pdc.prodname}                            
                         small
+                      .form-field
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='itemcat') SKU:
+                              th &nbsp;&nbsp;
+                              th
+                                label(for='sku') Type of produce:
+                            tr
+                              td.form-field
+                                  input#sku(type='text' name='sku' autocomplete='off' readonly)
+                                  small
+                              td &nbsp;&nbsp;    
+                              td.form-field
+                                  input#itemcat(type='text' name='itemcat' autocomplete='off' readonly)
+                                  small                        
                       div
                         table.table-responsive
                           tbody
@@ -141,25 +158,45 @@ html(lang='en-US')
                                 label(for='tonn') Tonnage(kgs):
                               th &nbsp;&nbsp;
                               th
-                                label(for='unitprice') Price per Kg:
+                                label(for='unitprice') Unit Price:
                             tr
                               td.form-field
-                                input#tonn.form-group(type='text' name='tonn' value='0' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
+                                input#tonn.form-group(type='text' name='tonn' value='0' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
                                 small
                               td &nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();')
+                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onchange='javascript:sumCalc();' readonly)
                                 small
                       .form-field
-                        label(for='amtpd') Total Amount Paid(UgX):
-                        input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value="0" readonly)
-                        small
-                      .form-field
-                        label(for='ddbuyer')
-                          | Name of the buyer:
-                        input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);')
-                        small#lblError(style='color: red')
-                        small
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='amtpd') Amount Paid (UgX):
+                              th &nbsp;&nbsp;&nbsp;
+                              th
+                                label(for='ddbuyer') Buyer
+                            tr
+                              td.form-field
+                                  input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value="0" readonly)
+                                  small
+                              td &nbsp;&nbsp;&nbsp;    
+                              td.form-field
+                                  input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);')
+                                  small#lblError(style='color: red')
+                                  small      
+                        table.table
+                          tbody
+                            tr 
+                              td Puchased stock (kgs):
+                              td Cash Sales:
+                              td Credit Sales:
+                              td Available stock (kgs):
+                            tr
+                              td #{totalPurchase.totalPurchTonnage}
+                              td #{totalSales.totalSoldTonnage}
+                              td #{totalCreditSales.totalCreditTonn}
+                              td(style='color:blue') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}                                                        
                 // end col
                 .col-md-6
                   .card-box
@@ -177,8 +214,9 @@ html(lang='en-US')
                       label(for='refno') Reference No:
                       input#refno(type='text' name='refno' autocomplete='off')
                       small
-                    .mb-3
-                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash-sale" readonly hidden)
+                    .mb-3     
+                      input#stockbal(type='text' name='stockbal' style='width: 40%; border: none;' value=totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn hidden)
+                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash" readonly hidden)
                       input#ddbranch(type='text' name='ddbranch' style='width: 40%; border: none;' value=branch readonly hidden)
                       input.btn-primary(type='submit' value='Save' style='width: 50%; height: 40px; border-radius: 5px;')
           // end of modal
@@ -215,3 +253,4 @@ html(lang='en-US')
         // End Important for searhable dropdwn
         // for validation
         script(src='/javascript/salesVal.js')
+        script(src='/javascript/fetchSales.js')

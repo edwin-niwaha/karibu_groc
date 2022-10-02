@@ -28,7 +28,7 @@ module.exports.isDirector = function (req, res, next) {
 }
 
 module.exports.isManagerOrSalesAgent = function (req, res, next) {
-    if (req.user.role === 'manager' || req.user.role === 'regular') {
+    if (req.user.role === 'manager' || req.user.role === 'agent') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')
@@ -38,7 +38,7 @@ module.exports.isManagerOrSalesAgent = function (req, res, next) {
 }
 
 module.exports.isAdmin = function (req, res, next) {
-    if (req.user.role === 'director' || req.user.role === 'manager' || req.user.role === 'regular' || req.user.role === 'admin') {
+    if (req.user.role === 'director' || req.user.role === 'manager' || req.user.role === 'agent' || req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')

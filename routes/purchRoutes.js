@@ -5,31 +5,45 @@ const passport = require('passport');
 const connectEnsureLogin = require("connect-ensure-login");
 const { isManager } = require("../auth/authorization");
 const { isAdmin } = require("../auth/authorization");
-//Import User model
+//Import models
 const purchModel = require('../models/purchModel');
 const itemsModel = require('../models/itemsModel');
 const branchModel = require('../models/branchModel');
 
 //Display add purchases page
-    router.get("/add_purch", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+    router.get("/add_purch", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             console.log(req.user)
             const brName = await branchModel.find()//to branches
             const produceList = await itemsModel.find()//to fetch items
+            let totalPurchase = await purchModel.aggregate([
+                {"$match":{ddbranch: req.user.ddbranch}},
+                {
+                    "$group": {
+                        _id:"$all",
+                        totalExpense: {$sum:"$costprice"},
+                        totalPurchTonnage: {$sum:"$tonn"},
+                        totalUnit: {$sum:"$unitprice"},
+                        totalSellPrice: {$sum:"$sellprice"},
+                    }
+                }
+            ])
             res.render("add_purch", {
                 username: req.user.firstname + " " + req.user.surname,
                 branch: req.user.ddbranch,
                 email: req.user.email,
                 role: req.user.role,
                 branchN: brName,
-                produce: produceList
+                produce: produceList,
+                totalPurchase: totalPurchase[0]
             })
         }
         catch (err) {
             console.log(err)
-            res.send("Oops! Access Denied, login to continue")
+            res.send("Oops!, Something went wrong.")
         }
+        
     })
 
 //save new purchase into the database
@@ -49,11 +63,12 @@ router.post("/newPurch", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //fetch purchases from the database //
-router.get("/purch_list", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/purch_list", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
-            let items = await purchModel.find();
+            let items = await purchModel.find({ddbranch: req.user.ddbranch});
             let totalPurchase = await purchModel.aggregate([
+                {"$match":{ddbranch: req.user.ddbranch}},
                 {
                     "$group": {
                         _id:"$all",
@@ -78,7 +93,7 @@ router.get("/purch_list", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmi
 
 
 //update selected purchase 
-router.get("/purchaseUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/purchaseUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             const brName = await branchModel.find()//to branches

@@ -18,7 +18,7 @@ router.get("/signup", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
     async (req, res) => {
         try {
             //console.log(req.user.firstname)
-            let items = await signUpModel.find();
+            let items = await signUpModel.find({ ddbranch: req.user.ddbranch });
             res.render("signup", { signups: items })
         }
         catch (err) {

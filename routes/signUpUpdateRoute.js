@@ -11,10 +11,10 @@ const signUpModel = require('../models/signUpModel');
 const branchModel = require('../models/branchModel');
 
 //fetch users from db
-router.get("/ulist", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/ulist", connectEnsureLogin.ensureLoggedIn(), isAdmin,
     async (req, res) => {
         try {
-            let items = await signUpModel.find();
+            let items = await signUpModel.find({ ddbranch: req.user.ddbranch });
             res.render("ulist", {
                 Signups: items
             })
@@ -26,7 +26,7 @@ router.get("/ulist", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
     })
 
 //fetch selected user for update
-router.get("/updateUsers/:id", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/updateUsers/:id", connectEnsureLogin.ensureLoggedIn(), isAdmin,
     async (req, res) => {
         try {
             const brName = await branchModel.find()//to branches
@@ -60,7 +60,7 @@ router.post("/updateUsers", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //delete records
-router.post("/ulist", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.post("/ulist", connectEnsureLogin.ensureLoggedIn(),isAdmin,
     async (req, res) => {
         try {
             await signUpModel.deleteOne({ _id: req.body._id })

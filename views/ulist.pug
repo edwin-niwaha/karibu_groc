@@ -10,7 +10,7 @@ html(lang='en')
     link(rel="stylesheet" href="/styles/main_ion.css")   
   body
     .container-fluid
-      h5 U List &nbsp;
+      h5 Users List &nbsp;
         a.btn.btn-primary(href="/managerDash") ⇦
         .d-md-flex.justify-content-md-end
             button.position-absolute.top-0.end-0.btn.btn-warning(type='button')
@@ -20,13 +20,7 @@ html(lang='en')
           ion-icon(name='print-outline')
       div(style='position: absolute; left: 19%; top: 0%; width: 10%;')      
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
-          ion-icon(name='download-outline')
-      div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='firstname' placeholder='Search by first name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search                
+          ion-icon(name='download-outline')              
       hr
       if Signups.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover

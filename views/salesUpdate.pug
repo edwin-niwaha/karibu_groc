@@ -130,38 +130,64 @@ html(lang='en-US')
                           | Name of the produce: #{prodname}
                           span.input-group-addon.pointer(data-toggle='modal' data-target='#exampleModal' title='Add Item?')
                             i.fa.fa-plus-square-o.text-primary.fa-lg
-                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:90%')
                           option(value='' selected='') --search the item name--
                           each pdc in produce
                             option(value=pdc.prodname) #{pdc.prodname}
                         small
-                        input#lbl(type='text' name='lbl' style='width: 40%; font-weight:bold; border: none;' value=Sale.prodname)
+                        input#lbl(type='text' name='lbl' style='width: 100%; font-weight:bold; border: none;' value=Sale.prodname)
                         hr
-                      div
+                      .form-field
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='itemcat') SKU:
+                              th &nbsp;&nbsp;
+                              th
+                                label(for='sku') Type of produce:
+                            tr
+                              td.form-field
+                                  input#sku(type='text' name='sku' autocomplete='off' value=Sale.sku)
+                                  small
+                              td &nbsp;&nbsp;    
+                              td.form-field
+                                  input#itemcat(type='text' name='itemcat' autocomplete='off' value=Sale.itemcat)
+                                  small                          
                         table.table-responsive
                           tbody
                             tr
                               th
                                 label(for='tonn') Tonnage(kgs):
+                              th &nbsp;&nbsp;
                               th
                                 label(for='unitprice') Price per Kg:
                             tr
                               td.form-field
-                                input#tonn.form-group(type='text' name='tonn' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' value=Sale.tonn)
+                                input#tonn.form-group(type='text' name='tonn' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' readonly value=Sale.tonn)
                                 small
+                              td &nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' value=Sale.unitprice)
+                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' readonly value=Sale.unitprice)
                                 small
                       .form-field
-                        label(for='amtpd') Total Amount Paid(UgX):
-                        input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value=Sale.amtpd readonly)
-                        small
-                      .form-field
-                        label(for='ddbuyer')
-                          | Name of the buyer:
-                        input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);' value=Sale.ddbuyer)
-                        small#lblError(style='color: red')
-                        small
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='amtpd') Amount Paid (UgX):
+                              th &nbsp;&nbsp;
+                              th
+                                label(for='ddbuyer') Buyer
+                            tr
+                              td.form-field
+                                  input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value=Sale.amtpd readonly)
+                                  small
+                              td &nbsp;&nbsp;   
+                              td.form-field
+                                  input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);' value=Sale.ddbuyer)
+                                  small#lblError(style='color: red')
+                                  small                           
                 // end col
                 .col-md-6
                   .card-box
@@ -182,7 +208,7 @@ html(lang='en-US')
                       input#refno(type='text' name='refno' autocomplete='off' value=Sale.refno)
                       small
                     .mb-3
-                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash-sale" readonly hidden)
+                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash" readonly hidden)
                       input.btn-primary(type='submit' value='Update' style='width: 50%; height: 40px; border-radius: 5px;')
           // end row
           // end container
@@ -216,4 +242,4 @@ html(lang='en-US')
             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
         // End Important for searhable dropdwn
         // for validation
-        script(src='/javascript/salesVal.js')
+        script(src='/javascript/salesUpdateVal.js')

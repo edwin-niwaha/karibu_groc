@@ -13,6 +13,8 @@ html(lang='en')
         img(src='/images/rsz_karibu-logo_.png' alt='')
       .text-center.mt-4.name
         | Karibu Groceries Ltd
+      hr
+      br
       form.p-3.mt-3(method='POST' action='/login' name='login')
         .form-field.d-flex.align-items-center
           span.far.fa-user
@@ -20,7 +22,10 @@ html(lang='en')
         .form-field.d-flex.align-items-center
           span.fas.fa-key
           input#password(type='password' name='password' placeholder='Password' required='')
+        p(style='color:red; font-weight:16px') #{loginerror}
         input.btn.mt-3(type='submit' value='Login')
+      br
+      hr
       .text-center.fs-6
         a(href='/contact') Forgot your password?
         |  | 

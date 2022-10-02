@@ -25,7 +25,7 @@ router.get("/branches", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
         }
         catch (err) {
             console.log(err)
-            res.send("Oops! Access Denied, login to continue")
+            res.send("Oops!, Something went wrong.")
         }
     })
 

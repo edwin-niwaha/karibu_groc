@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Stock Report
+    link(rel='shortcut icon' href='/assets/img/favicons/favicon-32x32.png')
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx' crossorigin='anonymous')
+    link(rel="stylesheet" href="/styles/main_ion.css")   
+  body
+    .container-fluid
+      h5 Stock Report &nbsp;
+          a.btn.btn-primary(href='/managerDash') Back
+          .d-md-flex.justify-content-md-end
+            button.position-absolute.top-0.end-0.btn.btn-warning(type='button')
+              a(href="/logout/") Sign Out
+      div(style='position: absolute; left: 15%; top: 0%; width: 10%;')
+        button.btn.btn-primary(type='button' onclick='PrintTable();') 
+          ion-icon(name='print-outline')
+      div(style='position: absolute; left: 19%; top: 0%; width: 10%;')      
+        button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
+          ion-icon(name='download-outline')            
+      hr
+      if purchases.length
+        table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
+            thead.table-dark
+                tr
+                    th(scope='col') SKU
+                    th(scope='col') Produce
+                    th(scope='col') Category
+                    th(scope='col' style='text-align: right;') Tonnage purchased(kgs)
+                    th(scope='col' style='text-align: right;') Tonnage Sold(kgs)
+                    th(scope='col' style='text-align: right;') Balance
+                    th(scope='col' style='text-align: right;') Unit price
+                    th(scope='col' style='text-align: right;') Stock value
+                    th(scope='col') Branch
+            tbody
+            each purchase in purchases
+                tr
+                    td #{purchase.sku}
+                    td #{purchase.prodname}
+                    td #{purchase.itemcat}
+                    td(style='text-align: right;') #{purchase.tonn}
+                    td(style='text-align: right;') #{purchase.tonn}
+                    td(style='text-align: right;') #{purchase.tonn - purchase.tonn}
+                    td(style='text-align: right;') #{purchase.sellprice}
+                    td(style='text-align: right;') #{purchase.sellprice * purchase.tonn}
+                    td #{purchase.ddbranch}
+            tfoot(style='background-color:#008080; color:white')
+              tr
+                  td(scope='col') Totals:
+                  td
+                  td
+                  td(scope='col' style='text-align: right;') #{totalPurchase.totalPurchTonnage}
+                  td(scope='col' style='text-align: right;') #{totalPurchase.totalUnit} 
+                  td(scope='col' style='text-align: right;') #{totalPurchase.totalUnit} 
+                  td(scope='col' style='text-align: right;') #{totalPurchase.totalUnit}
+                  td 
+                  td
+      else
+        p There are no records to display
+    script(src='/javascript/printStock.js')        
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js' integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa' crossorigin='anonymous')
+    script(type='text/javascript' src='http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js')
+    script(type='text/javascript' src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script( type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js")

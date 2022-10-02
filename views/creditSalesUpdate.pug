@@ -178,11 +178,11 @@ html(lang='en-US')
                                 label(for='unitprice') Price per Kg:
                             tr
                               td.form-field
-                                input#tonn.form-group(type='text' name='tonn' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' value=CreditSale.tonn)
+                                input#tonn.form-group(type='text' name='tonn' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' readonly value=CreditSale.tonn)
                                 small
                               td &nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' value=CreditSale.unitprice)
+                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' readonly value=CreditSale.unitprice)
                                 small                                                   
                         table.table-responsive
                           tbody
@@ -194,7 +194,7 @@ html(lang='en-US')
                                 label(for='amtpd') Sales Agent:
                             tr
                               td.form-field
-                                input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' value=CreditSale.amtpd)
+                                input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' readonly value=CreditSale.amtpd)
                                 small                                 
                               td &nbsp;&nbsp;
                               td.form-field
@@ -207,45 +207,43 @@ html(lang='en-US')
                     .form-field
                       label(for='prodname') Name of the produce:
                         input#lbl(type='text' name='lbl' style='width: 40%; font-weight:bold; border: none;' value=CreditSale.prodname)                                   
-                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
-                          option(value='' selected='') --search the item name--
-                          each pdc in produce
-                            option(value=pdc.prodname) #{pdc.prodname}
-                        small 
-                      hr
-                      table.table-responsive
-                        tbody
-                          tr
-                            th(colspan='2')
-                              label(for='duedte') Type of produce:
-                          tr
-                            td.form-field
-                              input#lbll.form-group(type='text' name='lbll' autocomplete='off' style='background-color:#C0C0C0; width:100%; border:none' value=CreditSale.ddproduce)
-                              small
-                            td.form-field
-                              select#ddproduce.form-control(type='text' name='ddproduce' autocomplete='off' width='50%' value=CreditSale.ddproduce)
-                                option(selected='' value='') --select produce type--
-                                option(value='Breeder') Breeder 
-                                option(value='Nuclear') Nuclear   
-                                option(value='Foundation') Foundation
-                                option(value='Certified') Certified                        
-                              small
+                      select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                        option(value='' selected='') --search the item name--
+                        each pdc in produce
+                          option(value=pdc.prodname data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.unitprice) #{pdc.prodname}                            
+                      small 
                       table.table-responsive
                         tbody
                           tr
                             th
-                              label(for='duedte') Due date:
+                              label(for='itemcat') Stock Keeping Unit:
                             th &nbsp;&nbsp;
                             th
-                              label(for='dpatchdate') Date of dispatch:
+                              label(for='sku') Type of produce:
                           tr
                             td.form-field
-                              input#duedte.form-control.pull-right.datepicker(type='date' name='duedte' autocomplete='off' style='width: 100%;' value=CreditSale.duedte)
-                              small
-                            td &nbsp;&nbsp;
+                                input#sku(type='text' name='sku' autocomplete='off' readonly value=CreditSale.sku)
+                                small
+                            td &nbsp;&nbsp;    
                             td.form-field
-                              input#dpatchdate.form-control.pull-right.datepicker(type='date' name='dpatchdate' autocomplete='off' style='width: 100%;' value=CreditSale.dpatchdate)
-                              small    
+                                input#itemcat(type='text' name='itemcat' autocomplete='off' readonly value=CreditSale.itemcat)
+                                small                        
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='duedte') Due date:
+                              th &nbsp;&nbsp;
+                              th
+                                label(for='dpatchdate') Date of dispatch:
+                            tr
+                              td.form-field
+                                input#duedte.form-control.pull-right.datepicker(type='date' name='duedte' autocomplete='off' style='width: 100%;' value=CreditSale.duedte)
+                                small
+                              td &nbsp;&nbsp;
+                              td.form-field
+                                input#dpatchdate.form-control.pull-right.datepicker(type='date' name='dpatchdate' autocomplete='off' style='width: 100%;' value=CreditSale.dpatchdate)
+                                small    
                     hr
                     .mb-3
                       input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="credit" readonly hidden)
@@ -284,4 +282,5 @@ html(lang='en-US')
             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
         // End Important for searhable dropdwn
         // for validation
-        script(src='/javascript/creditVal.js')
+        script(src='/javascript/creditUpdateVal.js')
+        script(src='/javascript/fetchCreditSales.js')

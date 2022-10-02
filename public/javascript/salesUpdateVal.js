@@ -75,7 +75,7 @@ const checkTonnage = () => {
     let valid = false;
 
     const tonn = tonnEl.value.trim();
-    const stockbal = stockbalEL.value.trim();
+    // const stockbal = stockbalEL.value.trim();
 
     if (!isRequired(tonn)) {
         showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
@@ -84,11 +84,7 @@ const checkTonnage = () => {
         showError(tonnEl, '⛔️ Lengthen this to 4 characters or more.');
         return false;
     }
-    else if (tonn > stockbal) {
-        alert('You can not sale more than the available stock');
-        showError(tonnEl, '⛔️ You can not sale more than the available stock');
-        return false;
-    }
+
     else {
         showSuccess(tonnEl);
         valid = true;

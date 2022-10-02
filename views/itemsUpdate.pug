@@ -128,25 +128,22 @@ html(lang='en-US')
                         tbody
                           tr
                             th
-                              label(for='itemName') Item Name: #{itemName}
+                              label(for='itemName') Item Name:
+                            th &nbsp;&nbsp;&nbsp;
                             th
-                              label(for='itemCat') Category:
+                              label(for='itemCat') Item Category:
                           tr
                             td.form-field
-                              input#itemName(type='text' name='itemName' autocomplete='off' value=tb_Item.itemName)
+                              input#itemName(type='text' name='itemName' autocomplete='off' readonly value=tb_Item.itemName)
                               small#lblError(style='color: red')
                               small
+                            td &nbsp;&nbsp;&nbsp;
                             td.form-field
-                              select#ddprodtype.form-control(type='text' name='ddprodtype' autocomplete='off' width='100%' value=tb_Item.ddprodtype)
-                                option(selected='' value='') --select produce type--
-                                option(value='Breeder') Breeder 
-                                option(value='Nuclear') Nuclear   
-                                option(value='Foundation') Foundation
-                                option(value='Certified') Certified  
+                              input#itemcat(type='text' name='itemcat' maxlength='8' autocomplete='off' readonly value=tb_Item.itemcat)
                               small    
                       .form-field
                         label(for='sku') SKU:
-                        input#sku(type='text' name='sku' maxlength='8' autocomplete='off' value=tb_Item.sku)
+                        input#sku(type='text' name='sku' maxlength='8' autocomplete='off' readonly value=tb_Item.sku)
                         small#lblError(style='color: red')
                         small
                       .form-field
@@ -171,40 +168,14 @@ html(lang='en-US')
                             td.form-field
                               input#sellprice(type='text' name='sellprice' autocomplete='off' maxlength='9' onchange='javascript:sumCalc();' onkeypress='return functionx(event);' value=tb_Item.sellprice)
                               small
-                              small
                       .form-field
-                        label(for='sku') Profit:
-                        input#profit_loss(type='text' name='profit_loss' autocomplete='off' onkeypress='return functionx(event);' style='width: 50%; border-radius: 5px;' readonly value=tb_Item.profit_loss)
+                        label(for='sku') Supplier:
+                        input#supplier(type='text' name='supplier' autocomplete='off' style="width:90%" value=tb_Item.supplier)
                         small#lblError(style='color: red')
-                        small
+                        small                               
                       .mb-3
                         hr
                         input.btn-primary(type='submit' value='Update' style='width: 50%; height: 40px; border-radius: 5px;')
-                      hr                   
-            // start Modal-items
-            #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-              .modal-dialog(role='document')
-                .modal-content
-                  .modal-header
-                    h5#exampleModalLabel.modal-title Register Items
-                    button.close(type='button' data-dismiss='modal' aria-label='Close')
-                      span(aria-hidden='true') ×
-                  .modal-body
-                    // start reg form
-                    form#frm-items.form
-                      .form-field
-                        label(for='iCode') Item Code:
-                        input#iCode(type='text' name='iCode' autocomplete='off' required='')
-                        small
-                      .form-field
-                        label(for='iname') Item Name:
-                        input#iname(type='text' name='iname' autocomplete='off' required='')
-                        small
-                      .modal-footer
-                        button.btn-secondary(type='button' data-dismiss='modal' style='width: 50%; height: 40px; border-radius: 5px;') Close
-                        input.btn-primary(type='submit' value='Save changes' style='width: 50%; height: 40px; border-radius: 5px;')
-                    // end reg form
-                    // end of modal
           .row
             // content removed
             // end row

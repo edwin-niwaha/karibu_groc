@@ -30,7 +30,8 @@ const contactRoute = require('./routes/contactRoute');
 const feedbackRoute = require('./routes/feedbackRoute');
 const userRegRoute = require('./routes/signUpUpdateRoute');
 const branchRoute = require('./routes/branchRoute');
-const stockRoute = require('./routes/stockRoutes');
+const stockRoute = require('./routes/stockRoute');
+
 
 //set a session for login
 const expressSession = require('express-session')({
@@ -191,12 +192,9 @@ app.get("/landing/cart", (req, res) => {
 app.get("/logout", (req, res) => {
     res.render("logout")
 })
-app.get("/stock_bal", (req, res) => {
-    res.render("stock_bal")
+app.get("/stock_rpt", (req, res) => {
+    res.render("stock_rpt")
 })
-// app.get("/customerRegistration", (req, res) => {
-//     res.render("customerRegistration")
-// })
 
 //Undefined route 
 app.get('*', (req, res) => {

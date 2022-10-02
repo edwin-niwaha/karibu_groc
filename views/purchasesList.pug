@@ -11,7 +11,7 @@ html(lang='en')
     script(type='text/javascript' src='https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js')
   body
     .container-fluid
-      h5 Purchases List &nbsp;
+      h5 Produces List &nbsp;
           a.btn.btn-primary(href='/add_purch') Back
           .d-md-flex.justify-content-md-end
             button.position-absolute.top-0.end-0.btn.btn-warning(type='button')
@@ -23,23 +23,20 @@ html(lang='en')
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
           ion-icon(name='download-outline')
       div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='prodname' placeholder='Search by produce name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search              
+          input#myInput.form-control(type='text' onkeyup='searchFunc()' placeholder='Search by produce name...' title='Type in a name')                   
       hr
       if purchases.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
             thead.table-dark
                 tr
                     th(scope='col') Produce
+                    th(scope='col') S.K.Unit
                     th(scope='col') Type
-                    th(scope='col') Purchase_date
+                    th(scope='col') Date_of_purchase
                     th(scope='col') Time                   
                     th(scope='col' style='text-align: right;') Tonnage (kgs)
                     th(scope='col' style='text-align: right;') Unit price
-                    th(scope='col' style='text-align: right;') Cost price
+                    th(scope='col' style='text-align: right;') Total Cost
                     th(scope='col' style='text-align: right;') Selling price
                     th(scope='col' style='text-align: center;') Entered by
                     th(scope='col') Branch
@@ -51,7 +48,8 @@ html(lang='en')
             each purchase in purchases
                 tr
                     td #{purchase.prodname}
-                    td #{purchase.ddprodtype}
+                    td #{purchase.sku}
+                    td #{purchase.itemcat}
                     td #{moment(purchase.sdate).format("DD-MM-YYYY")}
                     td #{moment(purchase.createdAt).format("(HH:MM:SS)")}                    
                     td(style='text-align: right;') #{purchase.tonn}
@@ -74,6 +72,7 @@ html(lang='en')
             tfoot(style='background-color:#008080; color:white')
               tr
                   td(scope='col') Totals:
+                  td
                   td
                   td
                   td

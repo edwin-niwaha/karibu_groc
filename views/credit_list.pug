@@ -22,27 +22,23 @@ html(lang='en')
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
           ion-icon(name='download-outline')
       div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='prodname' placeholder='Search by produce name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search                 
+          input#myInput.form-control(type='text' onkeyup='searchFunc()' placeholder='Search by produce name...' title='Type in a name')                                 
       hr
       if CreditSales.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
             thead.table-dark
                 tr
+                    th(scope='col') Produce
+                    th(scope='col') Type
+                    th(scope='col') S.K.Unit
                     th(scope='col') Buyer
                     th(scope='col') Buyer's NIN
                     th(scope='col') Location
                     th(scope='col') Telephone
-                    th(scope='col') Entered by
-                    th(scope='col') Produce
-                    th(scope='col') Type
                     th(scope='col' style='text-align: right;') Tonnage
                     th(scope='col' style='text-align: right;') Unit price
                     th(scope='col' style='text-align: right;') Amount due                
-                    th(scope='col') Due date
+                    th(scope='col') Due_date
                     th(scope='col') Dispatch date
                     th(scope='col') Status
                     th Branch
@@ -51,13 +47,13 @@ html(lang='en')
             tbody
             each CreditSale in CreditSales
                 tr
+                    td #{CreditSale.prodname} 
+                    td #{CreditSale.itemcat} 
+                    td #{CreditSale.sku}
                     td #{CreditSale.ddbuyer}
                     td #{CreditSale.nin}
                     td #{CreditSale.loc}
                     td #{CreditSale.contacttel}
-                    td #{CreditSale.salesagent}
-                    td #{CreditSale.prodname} 
-                    td #{CreditSale.ddproduce} 
                     td(style='text-align: right;') #{CreditSale.tonn} 
                     td(style='text-align: right;') #{CreditSale.unitprice} 
                     td(style='text-align: right;') #{CreditSale.amtpd}                   
@@ -82,9 +78,9 @@ html(lang='en')
                   td 
                   td 
                   td 
-                  td(scope='col' style='text-align: right;') #{totalSales.totalTonn}
-                  td(scope='col' style='text-align: right;') #{totalSales.totalUnit}
-                  td(scope='col' style='text-align: right;') #{totalSales.totalAmt}
+                  td(scope='col' style='text-align: right;') #{totalCreditSales.totalCreditTonn}
+                  td(scope='col' style='text-align: right;') #{totalCreditSales.totalCreditUnit}
+                  td(scope='col' style='text-align: right;') #{totalCreditSales.totalCreditAmt}
                   td 
                   td  
                   td

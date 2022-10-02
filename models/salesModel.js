@@ -6,6 +6,8 @@ const router = express.Router();
 //Database schema for User
 const salesSchema = new mongoose.Schema({
     prodname:String,
+    itemcat: String,
+    sku: String,
     tonn:Number, 
     unitprice:Number,
     amtpd:Number,

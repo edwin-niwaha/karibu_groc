@@ -1,5 +1,6 @@
 const prodnameEl = document.querySelector('#prodname');
-const ddprodtypeEL = document.querySelector('#ddprodtype');
+const itemcatEL = document.querySelector('#itemcat');
+const skuEL = document.querySelector('#sku');
 const sdateEL = document.querySelector('#sdate');
 const tonnEl = document.querySelector('#tonn');
 const costpriceEL = document.querySelector('#costprice');
@@ -33,19 +34,38 @@ const checkProdName = () => {
     return valid;
 };
 
+const Checksku = () => {
+
+    let valid = false;
+    const min = 7,
+        max = 8;
+    const sku = skuEL.value.trim();
+
+    if (!isRequired(sku)) {
+        // alert("Please select the user role!");
+        showError(skuEL, '⛔️ Please enter the Stock Keeping Unit !');
+        return false;
+    }
+    else {
+        showSuccess(skuEL);
+        valid = true;
+    }
+    return valid;
+};
+
 const CheckProdType = () => {
 
     let valid = false;
 
-    const ddprodtype = ddprodtypeEL.value.trim();
+    const itemcat = itemcatEL.value.trim();
 
-    if (!isRequired(ddprodtype)) {
+    if (!isRequired(itemcat)) {
         // alert("Please select the user role!");
-        showError(ddprodtypeEL, '⛔️ Please select the produce type !');
+        showError(itemcatEL, '⛔️ Enter produce type !');
         return false;
     }
     else {
-        showSuccess(ddprodtypeEL);
+        showSuccess(itemcatEL);
         valid = true;
     }
     return valid;
@@ -78,8 +98,8 @@ const checkUnitPrice = () => {
         showError(unitpriceEL, '⛔️ Unit price field cannot be empty.');
         return false;
     }
-    else if (unitprice.length < 3) {
-        showError(unitpriceEL, '⛔️ Lengthen this to 3 characters or more.');
+    else if (unitprice.length < 4) {
+        showError(unitpriceEL, '⛔️ Lengthen this to 4 characters or more.');
         return false;
     }
     else {
@@ -153,14 +173,21 @@ const checkDealer = () => {
 const checkSupplier = () => {
 
     let valid = false;
-
+    const tonn = tonnEl.value.trim();
     const supplier = supplierEL.value.trim();
 
     if (!isRequired(supplier)) {
         showError(supplierEL, '⛔️ Please select the supplier !');
         return false;
     }
+    else if (tonn < 1000 && supplier =='Ind dealers') {
+        showError(tonnEl, '⛔️ Tonnage must be 1000 kgs or more');
+        showError(supplierEL, '☚ Increase tonnage to 1000 kgs or more');
+
+        return false;
+    }
     else {
+        showSuccess(tonnEl);
         showSuccess(supplierEL);
         valid = true;
     }
@@ -177,8 +204,8 @@ const checkSellPrice = () => {
         showError(sellpriceEL, '⛔️ Selling price field cannot be empty.');
         return false;
     }
-    else if (sellprice.length < 3) {
-        showError(sellpriceEL, '⛔️ Lengthen this to 3 characters or more.');
+    else if (sellprice.length < 4) {
+        showError(sellpriceEL, '⛔️ Lengthen this to 4 characters or more.');
         return false;
     }
     else {
@@ -266,6 +293,7 @@ form.addEventListener('submit', function (e) {
     // validate fields
     let isProdValid = checkProdName(),
         isProduceTypeValid = CheckProdType(),
+        isSku = Checksku(),
         isValidDate = checkDate(),
         isTonnValid = checkTonnage(),
         isCostPriceValid = checkCostPrice(),
@@ -276,6 +304,7 @@ form.addEventListener('submit', function (e) {
         isValidSellPrice = checkSellPrice();
 
     let isFormValid = isProdValid &&
+        isSku &&
         isProduceTypeValid &&
         isValidDate &&
         isTonnValid &&
@@ -312,7 +341,10 @@ form.addEventListener('input', debounce(function (e) {
         case 'prodname':
             checkProdName();
             break;
-        case 'ddprodtype':
+        case 'sku':
+            Checksku();
+            break;
+        case 'itemcat':
             CheckProdType();
             break;
         case 'sdate':
@@ -359,9 +391,4 @@ function sumCalc() {
     }
 }
 
-function check() {
-    document.getElementById("ddprodtype").value = document.getElementById("ddprodtype1").value;
-}
-function check1() {
-    document.getElementById("prodname").value = document.getElementById("prodnamex").value;
-}
+

@@ -22,24 +22,22 @@ html(lang='en')
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
           ion-icon(name='download-outline')
       div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='prodname' placeholder='Search by produce name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search          
+          input#myInput.form-control(type='text' onkeyup='searchFunc()' placeholder='Search by produce name...' title='Type in a name')       
       hr 
       #dvContents
       if Sales.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover
           thead.table-dark
             tr
-                th(scope='col') Produce name
-                th(scope='col') Ref no:
-                th(scope='col' style='text-align: right;') Tonnage(kgs)
+                th(scope='col') Produce
+                th(scope='col') Category:
+                th(scope='col') S.K.Unit:
+                th(scope='col' style='text-align: right;') Tonnage (kgs)
                 th(scope='col' style='text-align: right;') Unit price
                 th(scope='col' style='text-align: right;') Amount paid(UgX)
-                th(scope='col') Buyer's name
-                th(scope='col') Entered by:
+                th(scope='col') Buyer
+                th(scope='col') Ref:
+                th(scope='col') Posted_by:
                 th(scope='col') Branch
                 th(scope='col') Sale date
                 th(scope='col') Time
@@ -50,11 +48,13 @@ html(lang='en')
           each Sale in Sales
             tr
                 td #{Sale.prodname}
-                td #{Sale.refno} 
+                td #{Sale.itemcat}
+                td #{Sale.sku}  
                 td(style='text-align: right;') #{Sale.tonn}
                 td(style='text-align: right;') #{Sale.unitprice}
                 td(style='text-align: right;') #{Sale.amtpd}
                 td #{Sale.ddbuyer}
+                td #{Sale.refno} 
                 td #{Sale.salesagent}
                 td #{Sale.ddbranch}
                 td #{moment(Sale.sdate).format("DD-MM-YYYY")}   
@@ -72,12 +72,14 @@ html(lang='en')
             tr
                 td(scope='col') Totals:
                 td
+                td 
                 td(scope='col' style='text-align: right;') #{totalSales.totalTonn}
                 td(scope='col' style='text-align: right;') #{totalSales.totalUnit}
                 td(scope='col' style='text-align: right;') #{totalSales.totalAmt}
                 td 
                 td 
                 td 
+                td
                 td 
                 td 
                 td 

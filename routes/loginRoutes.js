@@ -18,8 +18,8 @@ router.post('/login', (req, res, next) => {
       }
 
       if (!user) {
-        //return res.redirect('/login?info=' + info); 
-        res.send('<div class="container" style="color:red; text-align:center; font-size:24px; background-color:#CCCCFF; width:30%; height:200px; margin:0 auto; margin-top:5%; border-radius:5px;">Your username or password is incorrect! <br><hr> Enter a valid username and password combination  and <a href="http://localhost:8080/login"> login again</a></div>')
+        return res.render('login', {loginerror: "Email or password is incorrect"}); 
+        // res.send('<div class="container" style="color:red; text-align:center; font-size:24px; background-color:#CCCCFF; width:30%; height:200px; margin:0 auto; margin-top:5%; border-radius:5px;">Your email or password is incorrect! <br><hr> Enter a valid username and password combination  and <a href="http://localhost:8080/login"> login again</a></div>')
       }
 
       req.logIn(user, function (err) {

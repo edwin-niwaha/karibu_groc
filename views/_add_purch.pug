@@ -1,7 +1,7 @@
 doctype html
 html(lang='en-US')
   head
-    title Karibu Groceries | Update Produces
+    title Karibu Groceries | Add Purchases
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(http-equiv='content-type' content='text/html;charset=utf-8')
@@ -115,19 +115,23 @@ html(lang='en-US')
                     | Email:&nbsp;  
                     b #{email} &nbsp;|&nbsp;
                     li.breadcrumb-item
-                      a(href='/add_purch/') Produces
+                      a(href='/add_purch/') Purchases
                     li.breadcrumb-item
-                      a(href='/purch_list/') Produces List
+                      a(href='/purch_list/') Purchase List
                   .clearfix
-            form#purchfrm.form(action = "/purchaseUpdate?id="+purchase._id method="POST")
+            form#purchfrm.form(action='/newPurch' name='purchfrm' method='POST')
               .row
                 .col-md-6
                   .card-box
                     .form-horizontal(role='form')
                       .form-field
-                          label(for='prodname') Name of the produce:
-                          input#prodname(type='text' name='prodname' autocomplete='off' style='height:40px; width:92%' value=purchase.prodname readonly)
-                          small
+                        label(for='prodname')
+                          | Name of the produce:
+                        select#prodname.chzn-select(value='prodname' name='prodname' style='width:100%')
+                          option(value='' selected='') --search the produce name--
+                          each pdc in produce
+                            option(value=pdc.itemName data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.costprice data-sellprice=pdc.sellprice) #{pdc.itemName}
+                        small
                       .form-field
                         table.table-responsive
                           tbody
@@ -139,15 +143,15 @@ html(lang='en-US')
                                 label(for='sku') Type of produce:
                             tr
                               td.form-field
-                                  input#sku(type='text' name='sku' autocomplete='off' value=purchase.sku)
+                                  input#sku(type='text' name='sku' autocomplete='off' readonly)
                                   small
                               td &nbsp;&nbsp;&nbsp;    
                               td.form-field
-                                  input#itemcat(type='text' name='itemcat' autocomplete='off' value=purchase.itemcat)
+                                  input#itemcat(type='text' name='itemcat' autocomplete='off' readonly)
                                   small
                         .form-field
                           label(for='sdate') Purchase Date:
-                          input#sdate(type='date' name='sdate' autocomplete='off' style="width:92%" value=purchase.sdate)
+                          input#sdate(type='date' name='sdate' autocomplete='off' style="width:92%")
                           small                                                         
                       .form-field
                         table.table-responsive
@@ -157,14 +161,14 @@ html(lang='en-US')
                                 label(for='tonn') Tonnage(kgs):
                               th &nbsp;&nbsp;&nbsp;
                               th
-                                label(for='unitprice') Unit Price:
+                                label(for='unitprice') Cost price / Kg:
                             tr
                               td.form-field
-                                input#tonn.form-group(type='text' name='tonn' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' value=purchase.tonn)
+                                input#tonn.form-group(type='text' name='tonn' value='0' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
                                 small
                               th &nbsp;&nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onchange='javascript:sumCalc();' readonly value=purchase.unitprice)
+                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' readonly)
                                 small   
                         table.table-responsive
                               tbody
@@ -176,11 +180,11 @@ html(lang='en-US')
                                     label(for='sellprice') Selling Price / Kg 
                                 tr
                                   td.form-field
-                                    input#costprice(type='text' name='costprice' autocomplete='off' maxlength='12' onkeypress='return functionx(event);' readonly value=purchase.costprice)
+                                    input#costprice(type='text' name='costprice' autocomplete='off' maxlength='12' onkeypress='return functionx(event);' readonly)
                                     small
                                   td &nbsp;&nbsp;&nbsp;
                                   td.form-field
-                                    input#sellprice(type='text' name='sellprice' autocomplete='off' maxlength='12' onkeyup='javascript:this.value=Comma(this.value);' onkeypress='return functionx(event);' readonly value=purchase.sellprice)
+                                    input#sellprice(type='text' name='sellprice' autocomplete='off' maxlength='12' onkeyup='javascript:this.value=Comma(this.value);' onkeypress='return functionx(event);' readonly)
                                     small                                 
                 // end col
                 .col-md-6
@@ -195,11 +199,16 @@ html(lang='en-US')
                             label(for='contacttel') Dealer's Name:
                         tr
                           td.form-field
-                            input#supplier(type='text' name='supplier' autocomplete='off' style="width:100%" readonly value=purchase.supplier)                      
+                            select#supplier.form-control(type='text' value='supplier' name='supplier' autocomplete='off' style="width:90%")
+                              option(value='' selected='') select the supplier
+                              option(value='Ind dealers') Individual dealers 
+                              option(value='Other Companies') Other companies   
+                              option(value='Maganjo farms') Own farms - Maganjo
+                              option(value='Matugga farms') Own farms - Matugga                       
                             small
                           td &nbsp;&nbsp;
                           td.form-field
-                            input#dealer(type='text' name='dealer' autocomplete='off' onkeypress='return Validatedealer(event);' style="width:100%" readonly value=purchase.dealer)
+                            input#dealer(type='text' name='dealer' autocomplete='off' onkeypress='return Validatedealer(event);' style="width:100%")
                             small#lblError(style='color: red')
                             small
                     table.table-responsive
@@ -212,7 +221,7 @@ html(lang='en-US')
                             label(for='ddbranch') Receiving Branch
                         tr
                           td.form-field
-                            input#contacttel(type='text' name='contacttel' autocomplete='off' maxlength='10' onkeypress='return functionx(event);' style="width:100%" value=purchase.contacttel)
+                            input#contacttel(type='text' name='contacttel' autocomplete='off' maxlength='10' onkeypress='return functionx(event);' style="width:100%")
                             small#lblError(style='color: red')
                             small
                           td &nbsp;&nbsp;

@@ -20,14 +20,14 @@ const signupSchema = new mongoose.Schema({
         unique: true,
         trim: true,
     },
-    password: {
-        type: String,
-        trim: true,
-    },
+    // password: {
+    //     type: String,
+    //     trim: true,
+    // },
     role: {
         type: String,
         required: true,
-        enum: ['director', 'manager', 'agent', 'inactive']
+        enum: ['director', 'manager', 'agent', 'inactive', 'admin']
     },
     ddbranch: {
         type: String,
@@ -44,10 +44,7 @@ const signupSchema = new mongoose.Schema({
     token: {
         type: String,
     },
-    // created_at:{
-    //     type:String,
-    //     default:Date.now()
-    // },
+
 },{ timestamps: true });
 
 signupSchema.plugin(passportLocalMongoose, { usernameField: "email" });

@@ -4,7 +4,7 @@ const sdateEL = document.querySelector('#sdate');
 const costpriceEL = document.querySelector('#costprice');
 const contacttelEL = document.querySelector('#contacttel');
 const sellpriceEL = document.querySelector('#sellprice');
-const ddprodtypeEL = document.querySelector('#ddprodtype');
+const itemcatEL = document.querySelector('#itemcat');
 
 const letters = /^[A-Za-z]+$/;
 
@@ -68,15 +68,15 @@ const CheckProdType = () => {
 
     let valid = false;
 
-    const ddprodtype = ddprodtypeEL.value.trim();
+    const itemcat = itemcatEL.value.trim();
 
-    if (!isRequired(ddprodtype)) {
+    if (!isRequired(itemcat)) {
         // alert("Please select the user role!");
-        showError(ddprodtypeEL, '⛔️ Please select the produce type !');
+        showError(itemcatEL, '⛔️ Please select the produce type !');
         return false;
     }
     else {
-        showSuccess(ddprodtypeEL);
+        showSuccess(itemcatEL);
         valid = true;
     }
     return valid;
@@ -93,8 +93,8 @@ const checkCostPrice = () => {
         showError(costpriceEL, '⛔️ You must enter the purchase price.');
         return false;
     }
-    else if (costprice.length < 5) {
-        showError(costpriceEL, '⛔️ Lengthen this to 5 characters or more.');
+    else if (costprice.length < 4) {
+        showError(costpriceEL, '⛔️ Lengthen this to 4 characters or more.');
         return false;
     }
     else {
@@ -115,8 +115,8 @@ const checkSellPrice = () => {
         showError(sellpriceEL, '⛔️ Selling price field cannot be empty.');
         return false;
     }
-    else if (sellprice.length < 5) {
-        showError(sellpriceEL, '⛔️ Lengthen this to 5 characters or more.');
+    else if (sellprice.length < 4) {
+        showError(sellpriceEL, '⛔️ Lengthen this to 4 characters or more.');
         return false;
     }
     else {
@@ -222,7 +222,7 @@ form.addEventListener('input', debounce(function (e) {
         case 'itemName':
             checkitemName();
             break;
-        case 'ddprodtype':
+        case 'itemcat':
             CheckProdType();
             break;
         case 'sku':
