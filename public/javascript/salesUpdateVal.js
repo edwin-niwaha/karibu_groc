@@ -80,8 +80,8 @@ const checkTonnage = () => {
     if (!isRequired(tonn)) {
         showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
     }
-    else if (tonn.length < 4) {
-        showError(tonnEl, '⛔️ Lengthen this to 4 characters or more.');
+    else if (tonn.length < 3) {
+        showError(tonnEl, '⛔️ Lengthen this to 3 characters or more.');
         return false;
     }
 

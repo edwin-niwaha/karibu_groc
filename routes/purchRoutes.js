@@ -47,7 +47,7 @@ const branchModel = require('../models/branchModel');
     })
 
 //save new purchase into the database
-router.post("/newPurch", connectEnsureLogin.ensureLoggedIn(),
+router.post("/newPurch", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             const newPurch = new purchModel(req.body)
@@ -114,7 +114,7 @@ router.get("/purchaseUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isManager
     })
 
 //save updated purchase item
-router.post("/purchaseUpdate", connectEnsureLogin.ensureLoggedIn(),
+router.post("/purchaseUpdate", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             await purchModel.findByIdAndUpdate({ _id: req.query.id }, req.body)
@@ -126,7 +126,7 @@ router.post("/purchaseUpdate", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //delete record from the database
-router.post("/purch_list", connectEnsureLogin.ensureLoggedIn(),
+router.post("/purch_list", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             await purchModel.deleteOne({ _id: req.body._id })

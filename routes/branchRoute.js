@@ -12,7 +12,7 @@ const { isAdmin } = require("../auth/authorization");
 const branchModel = require('../models/branchModel');
 
 //Display branches page
-router.get("/branches", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/branches", connectEnsureLogin.ensureLoggedIn(), isAdmin,
     async (req, res) => {
         try {
             console.log(req.user)
@@ -44,7 +44,7 @@ router.post("/newBranch", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //fetch items from db
-router.get("/branch_list", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/branch_list", connectEnsureLogin.ensureLoggedIn(), isAdmin,
     async (req, res) => {
         try {
             let items = await branchModel.find();

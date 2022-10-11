@@ -31,7 +31,7 @@ html(lang='en')
             tr
                 th(scope='col') Produce
                 th(scope='col') Category:
-                th(scope='col') S.K.Unit:
+                th(scope='col') SKU:
                 th(scope='col' style='text-align: right;') Tonnage (kgs)
                 th(scope='col' style='text-align: right;') Unit price
                 th(scope='col' style='text-align: right;') Amount paid(UgX)
@@ -58,7 +58,7 @@ html(lang='en')
                 td #{Sale.salesagent}
                 td #{Sale.ddbranch}
                 td #{moment(Sale.sdate).format("DD-MM-YYYY")}   
-                td #{moment(Sale.updatedAt).format("(HH:MM:SS)")}  
+                td #{Sale.stime}  
                 td #{Sale.trans_type}                              
                 td
                   a.edit(href='/salesUpdate/'+Sale._id)

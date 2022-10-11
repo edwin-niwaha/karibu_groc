@@ -35,7 +35,7 @@ html(lang='en-US')
       width: 30px;
       border-color: white;
       }
-  body.fixed-left
+  body.fixed-left(onload='myFunction()')
     // Begin page
     #wrapper
       // Top Bar Start
@@ -97,6 +97,31 @@ html(lang='en-US')
                 </form>
       // Top Bar End
       // ========== Left Sidebar Start ========== Pro
+      #header_agent.left.side-menu
+        .sidebar-inner.slimscrollleft
+          // - Divider
+          #sidebar-menu
+            ul
+              li
+                a.waves-effect.waves-primary(href='../salesAgentDash')
+                  i.ti-home
+                  span Dashboard
+                  span.badge.badge-primary.pull-right #
+              li.has_sub
+                        a.waves-effect.waves-primary(href='javascript:void(0);')
+                          i.ti-shopping-cart-full(aria-hidden='true')
+                          span  Sales
+                          span.menu-arrow
+                        ul.list-unstyled
+                          li
+                            a(href='/add_sales/' target='_self') Add Cash Sales
+                          li
+                            a(href='/sales_list/' target='_self') View Cash Sales
+                          li
+                            a(href='/creditSales/' target='_self') Add Credit Sales
+                          li
+                            a(href='/credit_list/' target='_self') View Credit Sales                  
+            .clearfix
       #header.left.side-menu
       // ========== Left Sidebar End ========== Pro
       // ==============================================================
@@ -246,6 +271,7 @@ html(lang='en-US')
                                 small    
                     hr
                     .mb-3
+                      input#userRole(type='text' name='userRole' style='width: 40%; border: none;' value=role hidden)                        
                       input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="credit" readonly hidden)
                       input#ddbranch(type='text' name='ddbranch' style='width: 40%; border: none;' value=branch readonly hidden)
                       input.btn-primary(type='submit' value='Save' style='width: 50%; height: 40px; border-radius: 5px;')
@@ -284,3 +310,19 @@ html(lang='en-US')
         // for validation
         script(src='/javascript/creditUpdateVal.js')
         script(src='/javascript/fetchCreditSales.js')
+        script.
+            function myFunction() {
+            var result = document.getElementById("userRole").value;
+            if (result !="agent")
+            {
+                $("#header").show();
+                $("#table1").show();
+                $("#header_agent").hide();
+            } 
+            else{
+              $("#header").hide();
+              $("#table1").hide();
+              $("#header_agent").show();              
+            }
+            }
+

@@ -72,9 +72,9 @@ html(lang='en-US')
                     i.mdi.mdi-comment-account
                   p.notify-details
                     | Dear #{username}
-                    small.text-muted The stock level is below 1000kgs.
+                    small.text-muted The stock level is below 100kgs.
                     small.text-muted Current stock balance is: 
-                    small(style='color:blue; font-weight: 200; font-size:18px') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn} Kgs
+                    small(style='color:blue; font-weight: 200; font-size:18px') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}.toLocaleString() Kgs
             li.list-inline-item.dropdown.notification-list
               a.nav-link.dropdown-toggle.waves-effect.waves-light.nav-user(data-toggle='dropdown' href='#' role='button' aria-haspopup='false' aria-expanded='false')
                 img.rounded-circle(src='/assets/images/pendeza_logo.png' alt='user')
@@ -144,32 +144,6 @@ html(lang='en-US')
                   .clearfix
             form#regform.form
               .row
-                .col-sm-6.col-lg-6
-                  .card-box.widget-user
-                        img.img-responsive.rounded(src='/images/rsz_karibu-logo_.png' alt='user')
-                        .wid-u-info
-                        h5.mt-0.m-b-5.font-16 
-                        b KARIBU GROCERIES LTD
-                        hr
-                        p.text-muted.m-b-5.font-18 
-                        large.text-primary 
-                        b Stock balance: 
-                          span.counter(style='color:blue; font-weight: 900; font-size:24px') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}
-                          |  (kgs)
-                .col-sm-6.col-lg-6
-                  .card-box.widget-user
-                        img.img-responsive.rounded-circle(src='/images/admin.JPG' alt='user')
-                        .wid-u-info
-                        b.mt-0.m-b-5.font-16 #{username} &nbsp;|&nbsp;
-                        b.text-muted.m-b-5.font-13 #{email} &nbsp;|&nbsp;
-                        small.text-warning #{role}
-                        hr
-                        h3 Stock value: 
-                          b.text-blue.m-t-10
-                            | UgX:                        
-                            span.counter(style='color:blue; font-weight: 900; font-size:24px') #{totalPurchase.totalCost - totalSales.totalAmt - totalCreditSales.totalCreditAmt} 
-                            input#stockbal(type='text' name='stockbal' style='width: 40%; border: none;' value=totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn hidden)
-              .row
                 .col-sm-4.col-lg-4
                   .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
                     .circliful-chart(data-dimension='100' data-width='5' data-fontsize='14' data-percent='100' data-fgcolor='#f76397' data-bgcolor='#ebeff2')
@@ -192,7 +166,6 @@ html(lang='en-US')
                       | (kgs)
                     p.text-white.text-nowrap.m-b-10 Tonnage Sold on credit                                      
               // end row
-              // end row
               .row
                 .col-sm-4.col-lg-4
                   .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
@@ -211,7 +184,19 @@ html(lang='en-US')
                     h3.text-white.m-t-10
                       | UgX: 
                       span.counter #{totalCreditSales.totalCreditAmt}
-                    p.text-black.text-nowrap.m-b-10 TOTAL CREDIT SALES              
+                    p.text-black.text-nowrap.m-b-10 TOTAL CREDIT SALES       
+                .col-sm-6.col-lg-6
+                  .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
+                    h3.text-white.m-t-10 
+                      span.counter #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}
+                      | (kgs) 
+                    p.text-black.text-nowrap.m-b-10 Stock balance:    
+                .col-sm-6.col-lg-6
+                  .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
+                    h3.text-white.m-t-10 UgX: &nbsp;
+                      span.counter #{totalPurchase.totalCost - totalSales.totalAmt - totalCreditSales.totalCreditAmt}
+                    input#stockbal(type='text' name='stockbal' style='width: 40%; border: none;' value=totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn hidden)       
+                    p.text-black.text-nowrap.m-b-10 Stock value     
           .row
             footer.footer
           #footer
@@ -270,11 +255,10 @@ html(lang='en-US')
             function closeForm() {
             document.getElementById("myForm").style.display = "none";
             }
-            //stockbal  $("#notifylogo").hide();
           script.
             function myFunction() {
             var result = document.getElementById("stockbal").value;
-            if (parseInt(result) <= 1000)
+            if (parseInt(result) < 100)
             {
                 //- alert("greater than or equal to 1000");
                 $("#notifylogo").show();

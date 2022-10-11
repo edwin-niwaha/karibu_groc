@@ -6,11 +6,12 @@ const connectEnsureLogin = require("connect-ensure-login");
 const session = require('express-session');
 const flash = require('connect-flash');
 const {isManager} = require("../auth/authorization");
-const { isAdmin } = require("../auth/authorization");
+const {isAdmin} = require("../auth/authorization");
+
 //Import User model
 const contactModel = require('../models/contactModel');
 
-router.get("/feedback", connectEnsureLogin.ensureLoggedIn(),isManager, isAdmin,
+router.get("/feedback", connectEnsureLogin.ensureLoggedIn(),isManager,
     async (req, res) => {
         try {
             let items = await contactModel.find();
@@ -25,7 +26,7 @@ router.get("/feedback", connectEnsureLogin.ensureLoggedIn(),isManager, isAdmin,
     })
 
 //delete route
-router.post("/feedback", connectEnsureLogin.ensureLoggedIn(),
+router.post("/feedback", connectEnsureLogin.ensureLoggedIn(), isAdmin,
     async (req, res) => {
         try {
             await contactModel.deleteOne({ _id: req.body._id })

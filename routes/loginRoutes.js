@@ -37,6 +37,9 @@ router.post('/login', (req, res, next) => {
         else if (req.user.role === "director") {
           return res.redirect('/directorDash');
         }
+        else if (req.user.role === "admin") {
+          return res.redirect('/adminDash');
+        }
         else {
           return res.redirect('/salesAgentDash');
         }

@@ -14,7 +14,7 @@ const purchModel = require('../models/purchModel');
 const itemsModel = require('../models/itemsModel');
 
 //Display Sales page
-router.get("/creditSales", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent, isAdmin,
+router.get("/creditSales", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent,
     async (req, res) => {
         try {
             // console.log(req.user)
@@ -74,7 +74,7 @@ router.get("/creditSales", connectEnsureLogin.ensureLoggedIn(), isManagerOrSales
     })
 
 //save sales into the db
-router.post("/newCreditSales", connectEnsureLogin.ensureLoggedIn(),
+router.post("/newCreditSales", connectEnsureLogin.ensureLoggedIn(),isManagerOrSalesAgent,
     async (req, res) => {
         try {
             const newSales = new creditModel(req.body)
@@ -90,10 +90,10 @@ router.post("/newCreditSales", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //fetch sales from the db
-router.get("/credit_list", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent, isAdmin,
+router.get("/credit_list", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent,
     async (req, res) => {
         try {
-            let items = await creditModel.find();
+            let items = await creditModel.find({ddbranch: req.user.ddbranch});
             let totalCreditSales = await creditModel.aggregate([
                 {"$match":{ddbranch: req.user.ddbranch}},
                 {
@@ -117,7 +117,7 @@ router.get("/credit_list", connectEnsureLogin.ensureLoggedIn(), isManagerOrSales
     })
 
 //update selected sale 
-router.get("/creditSalesUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent, isAdmin,
+router.get("/creditSalesUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent,
     async (req, res) => {
         try {
             const produceList = await purchModel.find({ddbranch: req.user.ddbranch})//to fetch items
@@ -137,7 +137,7 @@ router.get("/creditSalesUpdate/:id", connectEnsureLogin.ensureLoggedIn(), isMana
     })
 
 //save updated sale item
-router.post("/creditSalesUpdate", connectEnsureLogin.ensureLoggedIn(),
+router.post("/creditSalesUpdate", connectEnsureLogin.ensureLoggedIn(), isManagerOrSalesAgent,
     async (req, res) => {
         try {
             await creditModel.findByIdAndUpdate({ _id: req.query.id }, req.body)

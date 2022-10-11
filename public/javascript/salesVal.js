@@ -80,8 +80,8 @@ const checkTonnage = () => {
     if (!isRequired(tonn)) {
         showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
     }
-    else if (tonn.length < 4) {
-        showError(tonnEl, '⛔️ Lengthen this to 4 characters or more.');
+    else if (tonn.length < 3) {
+        showError(tonnEl, '⛔️ Lengthen this to 3 characters or more.');
         return false;
     }
     else if (tonn > stockbal) {
@@ -382,5 +382,17 @@ function sumCalc() {
     var result = parseInt(txtNum1) * parseInt(txtNum2);
     if (!isNaN(result)) {
         document.getElementById('amtpd').value = result;
+    }
+}
+
+function myFunctionTonn() {
+    var stockbal = document.getElementById("stockbal").value;
+    var tonn1 = document.getElementById("tonn").value;
+    var tonn = parseInt(tonn1);
+    var stock = parseInt(stockbal);
+    if (tonn > stock) {
+        document.getElementById('tonn').value = 0;
+        alert('You can not sale more than the available stock of ' + stock + 'kgs');
+        return false;
     }
 }

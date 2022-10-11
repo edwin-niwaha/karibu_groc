@@ -30,15 +30,13 @@ html(lang='en')
             thead.table-dark
                 tr
                     th(scope='col') Produce
-                    th(scope='col') S.K.Unit
+                    th(scope='col') SKU
                     th(scope='col') Type
-                    th(scope='col') Date_of_purchase
-                    th(scope='col') Time                   
-                    th(scope='col' style='text-align: right;') Tonnage (kgs)
+                    th(scope='col' colspan="2") date and time
+                    th(scope='col' style='text-align: right; width:20px') Tonnage (kgs)
                     th(scope='col' style='text-align: right;') Unit price
                     th(scope='col' style='text-align: right;') Total Cost
-                    th(scope='col' style='text-align: right;') Selling price
-                    th(scope='col' style='text-align: center;') Entered by
+                    th(scope='col' style='text-align: right; width:20px') Selling price
                     th(scope='col') Branch
                     th(scope='col' colspan='2' style='text-align: center;') Supplier / dealer
                     th(scope='col') Contact
@@ -51,12 +49,11 @@ html(lang='en')
                     td #{purchase.sku}
                     td #{purchase.itemcat}
                     td #{moment(purchase.sdate).format("DD-MM-YYYY")}
-                    td #{moment(purchase.createdAt).format("(HH:MM:SS)")}                    
+                    td #{purchase.stime}                    
                     td(style='text-align: right;') #{purchase.tonn}
                     td(style='text-align: right;') #{purchase.unitprice}
                     td(style='text-align: right;') #{purchase.costprice}
                     td(style='text-align: right;') #{purchase.sellprice}
-                    td #{purchase.entertedby}
                     td #{purchase.ddbranch}
                     td #{purchase.supplier}
                     td #{purchase.dealer}
@@ -81,7 +78,6 @@ html(lang='en')
                   td(scope='col' style='text-align: right;') #{totalPurchase.totalExpense} 
                   td(scope='col' style='text-align: right;') #{totalPurchase.totalSellPrice}
                   td 
-                  td
                   td 
                   td 
                   td

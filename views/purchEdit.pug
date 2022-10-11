@@ -139,16 +139,29 @@ html(lang='en-US')
                                 label(for='sku') Type of produce:
                             tr
                               td.form-field
-                                  input#sku(type='text' name='sku' autocomplete='off' value=purchase.sku)
+                                  input#sku(type='text' name='sku' autocomplete='off' readonly value=purchase.sku)
                                   small
                               td &nbsp;&nbsp;&nbsp;    
                               td.form-field
-                                  input#itemcat(type='text' name='itemcat' autocomplete='off' value=purchase.itemcat)
+                                  input#itemcat(type='text' name='itemcat' autocomplete='off' readonly value=purchase.itemcat)
                                   small
-                        .form-field
-                          label(for='sdate') Purchase Date:
-                          input#sdate(type='date' name='sdate' autocomplete='off' style="width:92%" value=purchase.sdate)
-                          small                                                         
+                        table.table-responsive
+                          tbody
+                            tr
+                              th
+                                label(for='sdate') date of produce:
+                              th 
+                              th
+                                label(for='stime') time of produce:
+                            tr
+                              td.form-field
+                                  input#sdate(type='date' name='sdate' autocomplete='off' value=purchase.sdate)
+                                  small
+                              td *************    
+                              td.form-field
+                                  input#stime(type='time' name='stime' autocomplete='off' value=purchase.stime)
+                                  small                                                                              
+                                                      
                       .form-field
                         table.table-responsive
                           tbody
@@ -199,7 +212,7 @@ html(lang='en-US')
                             small
                           td &nbsp;&nbsp;
                           td.form-field
-                            input#dealer(type='text' name='dealer' autocomplete='off' onkeypress='return Validatedealer(event);' style="width:100%" readonly value=purchase.dealer)
+                            input#dealer(type='text' name='dealer' autocomplete='off' onkeypress='return Validatedealer(event);' style="width:100%" value=purchase.dealer)
                             small#lblError(style='color: red')
                             small
                     table.table-responsive

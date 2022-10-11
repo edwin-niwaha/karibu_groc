@@ -12,7 +12,7 @@ const { isAdmin } = require("../auth/authorization");
 const itemsModel = require('../models/itemsModel');
 
 //Display Items page
-router.get("/add_item", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/add_item", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             console.log(req.user)
@@ -30,7 +30,7 @@ router.get("/add_item", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
     })
 
 //save items into the database
-router.post("/newItem", connectEnsureLogin.ensureLoggedIn(),
+router.post("/newItem", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             const newItem = new itemsModel(req.body)
@@ -46,7 +46,7 @@ router.post("/newItem", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //fetch items from db
-router.get("/items_list", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/items_list", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             let items = await itemsModel.find();
@@ -73,7 +73,7 @@ router.get("/items_list", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmi
     })
 
 //fetch selected item for update
-router.get("/UpdateItems/:id", connectEnsureLogin.ensureLoggedIn(),
+router.get("/UpdateItems/:id", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             const updateItem = await itemsModel.findById({ _id: req.params.id })
@@ -90,7 +90,7 @@ router.get("/UpdateItems/:id", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //save updated item
-router.post("/UpdateItems", connectEnsureLogin.ensureLoggedIn(),
+router.post("/UpdateItems", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             await itemsModel.findByIdAndUpdate({ _id: req.query.id }, req.body)
@@ -102,7 +102,7 @@ router.post("/UpdateItems", connectEnsureLogin.ensureLoggedIn(),
     })
 
 //delete records
-router.post("/items_list", connectEnsureLogin.ensureLoggedIn(),
+router.post("/items_list", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             await itemsModel.deleteOne({ _id: req.body._id })

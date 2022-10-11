@@ -390,5 +390,3 @@ function sumCalc() {
         document.getElementById('costprice').value = result;
     }
 }
-
-

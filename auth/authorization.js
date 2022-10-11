@@ -1,6 +1,6 @@
 module.exports.isSalesAgent = function (req, res, next) {
 
-    if (req.user.role === 'agent') {
+    if (req.user.role === 'agent' || req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')
@@ -9,7 +9,7 @@ module.exports.isSalesAgent = function (req, res, next) {
     }
 }
 module.exports.isManager = function (req, res, next) {
-    if (req.user.role === 'manager') {
+    if (req.user.role === 'manager' || req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')
@@ -18,7 +18,7 @@ module.exports.isManager = function (req, res, next) {
     }
 }
 module.exports.isDirector = function (req, res, next) {
-    if (req.user.role === 'director') {
+    if (req.user.role === 'director' || req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')
@@ -28,7 +28,7 @@ module.exports.isDirector = function (req, res, next) {
 }
 
 module.exports.isManagerOrSalesAgent = function (req, res, next) {
-    if (req.user.role === 'manager' || req.user.role === 'agent') {
+    if (req.user.role === 'manager' || req.user.role === 'agent' || req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')
@@ -38,7 +38,7 @@ module.exports.isManagerOrSalesAgent = function (req, res, next) {
 }
 
 module.exports.isAdmin = function (req, res, next) {
-    if (req.user.role === 'director' || req.user.role === 'manager' || req.user.role === 'agent' || req.user.role === 'admin') {
+    if (req.user.role === 'admin') {
         return next();
     } else {
         //   req.flash('danger', 'Not Authorized')

@@ -10,6 +10,7 @@ const purchSchema = new mongoose.Schema({
     itemcat: String,
     sku: String,
     sdate: String,
+    stime: String,
     tonn: Number,
     unitprice: Number,
     costprice: Number,

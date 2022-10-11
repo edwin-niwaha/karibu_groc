@@ -25,21 +25,27 @@
                 <!--- Divider -->
                 <div id="sidebar-menu">
                     <ul>
-                        <li>
-                            <a href="#" class="waves-effect waves-primary">
-                                <i class="ti-home"></i><span>Dashboard</span>
-                                <span class="badge badge-primary pull-right">#</span>
-                            </a>
-                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-home"></i> <span> Dashboards </span>
+                                <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="../adminDash/" target="_self">Administrator</a></li>
+                                <li><a href="../directorDash/" target="_self">Director</a></li>
+                                <li><a href="../managerDash/" target="_self">Manager</a></li>
+                                <li><a href="../salesAgentDash/" target="_self">Sales Agent</a></li>
 
+                            </ul>
+                        </li>
+                        <li class="menu-title">Main</li>
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary">
                                 <i class="fa-solid fa-cash-register"></i> <span> Purchases </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
-                                <li><a href="/add_purch/" target="_self">New Purchase</a></li>
-                                <li><a href="/purch_list/" target="_self">Purchase List</a></li>
+                                <li><a href="/add_purch/" target="_self">Add Produce</a></li>
+                                <li><a href="/purch_list/" target="_self">View Produce</a></li>
                             </ul>
                         </li>
 
@@ -48,10 +54,10 @@
                                     class="ti-shopping-cart-full"></i><span> Sales </span> <span
                                     class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="/add_sales/" target="_self">New Sales</a></li>
-                                <li><a href="/sales_list/" target="_self">Sales List</a></li>
-                                <li><a href="/creditSales/" target="_self">Credit Sales</a></li>
-                                <li><a href="/credit_list/" target="_self">Credit Sales List</a></li>                           
+                                <li><a href="/add_sales/" target="_self">Add Cash Sales</a></li>
+                                <li><a href="/sales_list/" target="_self">View Cash Sales</a></li>
+                                <li><a href="/creditSales/" target="_self">Add Credit Sales</a></li>
+                                <li><a href="/credit_list/" target="_self">View Credit Sales</a></li>
                             </ul>
                         </li>
 
@@ -59,17 +65,8 @@
                             <a href="javascript:void(0);" class="waves-effect waves-primary"><i
                                     class="ti-menu-alt"></i><span> Items </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="/add_item" target="_self">New Item</a></li>
-                                <li><a href="/items_list" target="_self">Items List</a></li>
-                            </ul>
-                        </li>
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect waves-primary">
-                                <i class="fa fa-bar-chart"></i> <span> Reports </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li><a href="/sales_rpt" target="_self">Sales Report</a></li>
+                                <li><a href="/add_item" target="_self">Add Item</a></li>
+                                <li><a href="/items_list" target="_self">View Items</a></li>
                             </ul>
                         </li>
                         <li class="has_sub">
@@ -78,16 +75,19 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
-                                <li><a href="/ulist" target="_self">User List</a></li>
+                                <li><a href="/signUp" target="_self">Register User</a></li>
                             </ul>
                         </li>
+                        <li class="menu-title">More</li>
 
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect waves-primary"><i
                                     class="ti-settings"></i><span> Settings </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="/branches" target="_self">Add Branches</a></li>
-                                <li><a href="/feedback" target="_self">User Feedback</a></li>
+                                <li><a href="/signUp" target="_self">Register User</a></li>
+                                <li><a href="/ulist" target="_self">Update Users</a></li>
+                                <li><a href="/feedback" target="_self">Users Feedback</a></li>
+                                <li><a href="/branches" target="_self">Add branch</a></li>
                             </ul>
                         </li>
                     </ul>

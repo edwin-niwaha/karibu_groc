@@ -32,7 +32,7 @@ html(lang='en-US')
       $("#header").load("/assets/js_header/headerAgent.html");
       $("#footer").load("/assets/js_header/footer.html");
       });
-  body.fixed-left
+  body.fixed-left(onload='myFunction()')
     // Begin page
     #wrapper
       // Top Bar Start
@@ -94,6 +94,31 @@ html(lang='en-US')
                 </form>
       // Top Bar End
       // ========== Left Sidebar Start ========== Pro
+      #header_agent.left.side-menu
+        .sidebar-inner.slimscrollleft
+          // - Divider
+          #sidebar-menu
+            ul
+              li
+                a.waves-effect.waves-primary(href='../salesAgentDash')
+                  i.ti-home
+                  span Dashboard
+                  span.badge.badge-primary.pull-right #
+              li.has_sub
+                        a.waves-effect.waves-primary(href='javascript:void(0);')
+                          i.ti-shopping-cart-full(aria-hidden='true')
+                          span  Sales
+                          span.menu-arrow
+                        ul.list-unstyled
+                          li
+                            a(href='/add_sales/' target='_self') Add Cash Sales
+                          li
+                            a(href='/sales_list/' target='_self') View Cash Sales
+                          li
+                            a(href='/creditSales/' target='_self') Add Credit Sales
+                          li
+                            a(href='/credit_list/' target='_self') View Credit Sales
+            .clearfix
       #header.left.side-menu
       // ========== Left Sidebar End ========== Pro
       // Start right Content here
@@ -117,7 +142,7 @@ html(lang='en-US')
                     | Role:&nbsp;  
                     b #{role} &nbsp;|&nbsp;
                     | Email:&nbsp;  
-                    b #{email} &nbsp;|&nbsp;
+                    b #{email}
                     li.breadcrumb-item
                       a(href='/salesAgentDash') 
                     li.breadcrumb-item.active
@@ -130,9 +155,9 @@ html(lang='en-US')
                         img.img-responsive.rounded(src='/images/rsz_karibu-logo_.png' alt='user')
                         .wid-u-info
                         h5.mt-0.m-b-5.font-16 KARIBU
-                        p.text-muted.m-b-5.font-13 GROCERIES
+                        p.text-muted.m-b-5.font-13 GROCERIES LIMITED
                         small.text-warning
-                        b LIMITED
+                        input#userRole(type='text' name='userRole' style='width: 40%; border: none;' value=role hidden)                        
                 .col-sm-6.col-lg-6
                   .card-box.widget-user
                         img.img-responsive.rounded-circle(src='/images/admin.JPG' alt='user')
@@ -142,15 +167,30 @@ html(lang='en-US')
                         small.text-warning
                         b #{role}
               .row
-                .col-sm-6.col-lg-6
-                  .card-box.widget-user
-                    p.text-muted.text-nowrap.m-b-10  A wholesale produce distributor dealing in cereals
-                    p.text-muted.text-nowrap.m-b-10 (Beans, Grain Maize, Cow peas, G-nuts and Soybeans)
+                .col-sm-4.col-lg-4
+                  .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
+                    h3.text-#FFBF00.m-t-10
+                    p.text-white.text-nowrap.m-b-10 Tonnage Purchased
+                .col-sm-4.col-lg-4
+                  .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
+                    h3.text-#FFBF00.m-t-10
+                    p.text-white.text-nowrap.m-b-10 Tonnage Purchased
+                .col-sm-4.col-lg-4
+                  .widget-simple-chart.text-right.card-box(style='background-color:#40E0D0')
+                    h3.text-#FFBF00.m-t-10
+                    p.text-white.text-nowrap.m-b-10 Tonnage Purchased
+              .row
                 .col-sm-6.col-lg-6
                   .card-box.widget-user
                         img.img-responsive.rounded(src='/images/assets/images/cowpease/peas1.jpg' alt='Peas') 
                         img.img-responsive.rounded(src='/images/assets/images/maize/grain4.jpg' alt='Grain') 
                         img.img-responsive.rounded(src='/images/assets/images/soybeans/soy_slide1.jpg' alt='Soybeans') 
+                        .wid-u-info
+                .col-sm-6.col-lg-6
+                  .card-box.widget-user
+                        img.img-responsive.rounded(src='/images/assets/images/maize/grain2.jpg' alt='grain2')
+                        img.img-responsive.rounded(src='/images/assets/images/maize/grain1.jpg' alt='grain1') 
+                        img.img-responsive.rounded(src='/images/assets/images/cowpease/pease3.jpg' alt='cowpease') 
                         .wid-u-info
               // end row
               // end row
@@ -211,4 +251,19 @@ html(lang='en-US')
             }
             function closeForm() {
             document.getElementById("myForm").style.display = "none";
+            }
+          script.
+            function myFunction() {
+            var result = document.getElementById("userRole").value;
+            if (result !="agent")
+            {
+                $("#header").show();
+                $("#table1").show();
+                $("#header_agent").hide();
+            } 
+            else{
+              $("#header").hide();
+              $("#table1").hide();
+              $("#header_agent").show();              
+            }
             }

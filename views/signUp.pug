@@ -91,12 +91,14 @@ html(lang='en-US' dir='ltr')
                         tr
                           th
                             label(for='firstname') First name:
+                          th &nbsp;&nbsp;
                           th
                             label(for='surname') Surname:
                         tr
                           td.form-field
                             input#firstname(type='text' name='firstname' autocomplete='off')
                             small
+                          td &nbsp;&nbsp;
                           td.form-field
                             input#surname(type='text' name='surname' autocomplete='off')
                             small
@@ -110,12 +112,14 @@ html(lang='en-US' dir='ltr')
                         tr
                           th
                             label(for='firstname') Password:
+                          th &nbsp;&nbsp;
                           th
                             label(for='surname') Confirm Password:
                         tr
                           td.form-field
                             input#password(type='password' name='password' autocomplete='off')
                             small
+                          td &nbsp;&nbsp;
                           td.form-field
                             input#confirm-password(type='password' name='confirm-password' autocomplete='off')
                             small
@@ -125,6 +129,7 @@ html(lang='en-US' dir='ltr')
                         tr
                           th
                             label(for='role') User role:
+                          th &nbsp;&nbsp;
                           th
                             label(for='ddbranch') Branch:
                         tr
@@ -135,6 +140,7 @@ html(lang='en-US' dir='ltr')
                               option(value='manager') Manager
                               option(value='agent') Sales Agent
                             small  
+                          td &nbsp;&nbsp;
                           td.form-field
                             select#ddbranch.form-control(type='text' value='ddbranch' name='ddbranch' autocomplete='off' width='100%')
                               option(selected='' value='') --select branch--

@@ -64,7 +64,7 @@ router.get("/directorDash", connectEnsureLogin.ensureLoggedIn(), isDirector,
                     }
                 }
             ])
-            //kampal branch
+            //kampala branch
             let totalCreditSalesKla = await creditModel.aggregate([
                 { "$match": { ddbranch: 'Kampala' } },
                 {
@@ -100,18 +100,47 @@ router.get("/directorDash", connectEnsureLogin.ensureLoggedIn(), isDirector,
                     }
                 }
             ])
+            //kpla branch purchases
+            let totalPurchaseKlaBr = await purchModel.aggregate([
+                { "$match": { ddbranch: 'Kampala' } },
+                {
+                    "$group": {
+                        _id: "$all",
+                        totalCostKpl: { $sum: "$costprice" },
+                        totalPurchTonnageKpl: { $sum: "$tonn" },
+                        totalUnitKpl: { $sum: "$unitprice" },
+                        totalSellPriceKpl: { $sum: "$sellprice" },
+                    }
+                }
+            ])
+            //kabale branch purhcases
+            let totalPurchaseKleBr = await purchModel.aggregate([
+                { "$match": { ddbranch: 'Kabale' } },
+                {
+                    "$group": {
+                        _id: "$all",
+                        totalCostKle: { $sum: "$costprice" },
+                        totalPurchTonnageKle: { $sum: "$tonn" },
+                        totalUnitKle: { $sum: "$unitprice" },
+                        totalSellPriceKle: { $sum: "$sellprice" },
+                    }
+                }
+            ])
             res.render("directorDash", {
                 username: req.user.firstname + " " + req.user.surname,
                 branch: req.user.ddbranch,
                 role: req.user.role,
                 email: req.user.email,
-                totalSales: totalSales[0],
+
+                 totalSales: totalSales[0],
                 totalSalesKleBr: totalSalesKleBr[0],
                 totalSalesKlaBr: totalSalesKlaBr[0],
                 totalCreditSales: totalCreditSales[0],
                 totalCreditSalesKla: totalCreditSalesKla[0],
                 totalCreditSalesKle: totalCreditSalesKle[0],
-                totalPurchase: totalPurchase[0]
+                totalPurchase: totalPurchase[0],
+                totalPurchaseKlaBr: totalPurchaseKlaBr[0],
+                totalPurchaseKleBr: totalPurchaseKleBr[0],
             })
         }
         catch (err) {
@@ -168,6 +197,8 @@ router.get("/managerDash", connectEnsureLogin.ensureLoggedIn(), isManager,
                 totalSales: totalSales[0],
                 totalCreditSales: totalCreditSales[0],
                 totalPurchase: totalPurchase[0],
+                // stock: (totalPurchase.length > 0 && totalSales.length > 0 && totalCreditSales.length > 0) ?totalPurchase[0].totalPurchTonnage[0] - totalSales[0].totalSoldTonnage - totalCreditSales[0].totalCreditTonn : 0
+
             })
         }
         catch (err) {

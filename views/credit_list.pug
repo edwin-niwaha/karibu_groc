@@ -30,17 +30,16 @@ html(lang='en')
                 tr
                     th(scope='col') Produce
                     th(scope='col') Type
-                    th(scope='col') S.K.Unit
+                    th(scope='col') SKU
                     th(scope='col') Buyer
                     th(scope='col') Buyer's NIN
                     th(scope='col') Location
                     th(scope='col') Telephone
-                    th(scope='col' style='text-align: right;') Tonnage
-                    th(scope='col' style='text-align: right;') Unit price
+                    th(scope='col' style='text-align: right; width:20Px') Tonnage (kgs)
+                    th(scope='col' style='text-align: right; width:20Px') Unit price
                     th(scope='col' style='text-align: right;') Amount due                
                     th(scope='col') Due_date
                     th(scope='col') Dispatch date
-                    th(scope='col') Status
                     th Branch
                     th(scope='col') Action
                     th(scope='col') 
@@ -59,7 +58,6 @@ html(lang='en')
                     td(style='text-align: right;') #{CreditSale.amtpd}                   
                     td #{moment(CreditSale.duedte).format("DD-MM-YYYY")}                                   
                     td #{moment(CreditSale.dpatchdate).format("DD-MM-YYYY")}  
-                    td #{CreditSale.trans_type}  
                     td #{CreditSale.ddbranch}                                
                     td 
                       a.edit(href='/creditSalesUpdate/'+CreditSale._id)
@@ -83,7 +81,6 @@ html(lang='en')
                   td(scope='col' style='text-align: right;') #{totalCreditSales.totalCreditAmt}
                   td 
                   td  
-                  td
                   td
                   td   
                   td                         

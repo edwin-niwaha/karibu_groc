@@ -26,7 +26,7 @@ html(lang='en-US')
       $("#header").load("/assets/js_header/headerManager.html");
       $("#footer").load("/assets/js_header/footer.html");
       });
-  body.fixed-left
+  body.fixed-left(onload='myFunction()')
     // Begin page
     #wrapper
       // Top Bar Start
@@ -88,6 +88,31 @@ html(lang='en-US')
                 </form>
       // Top Bar End
       // ========== Left Sidebar Start ========== Pro
+      #header_agent.left.side-menu
+        .sidebar-inner.slimscrollleft
+          // - Divider
+          #sidebar-menu
+            ul
+              li
+                a.waves-effect.waves-primary(href='../salesAgentDash')
+                  i.ti-home
+                  span Agent Dashboard
+                  span.badge.badge-primary.pull-right #
+              li.has_sub
+                        a.waves-effect.waves-primary(href='javascript:void(0);')
+                          i.ti-shopping-cart-full(aria-hidden='true')
+                          span  Sales
+                          span.menu-arrow
+                        ul.list-unstyled
+                          li
+                            a(href='/add_sales/' target='_self') Add Cash Sales
+                          li
+                            a(href='/sales_list/' target='_self') View Cash Sales
+                          li
+                            a(href='/creditSales/' target='_self') Add Credit Sales
+                          li
+                            a(href='/credit_list/' target='_self') View Credit Sales                  
+            .clearfix
       #header.left.side-menu
       // ========== Left Sidebar End ========== Pro
       // ==============================================================
@@ -199,15 +224,28 @@ html(lang='en-US')
                       input#salesagent(type='text' name='salesagent' autocomplete='off' onkeypress='return ValidateSales(event);' value=Sale.salesagent readonly)
                       small#lblError1(style='color: red')
                       small
-                    .form-field
-                      label(for='sdate') Sales Date:
-                      input#sdate.form-control.pull-right.datepicker(type='date' name='sdate' value=Sale.sdate)
-                      small
+                    table.table-responsive
+                      tbody
+                        tr
+                          th
+                            label(for='sdate') date of sale:
+                          th 
+                          th
+                            label(for='stime') time of sale:
+                        tr
+                          td.form-field
+                              input#sdate(type='date' name='sdate' autocomplete='off' value=Sale.sdate)
+                              small
+                          td *************    
+                          td.form-field
+                              input#stime(type='time' name='stime' autocomplete='off' value=Sale.stime)
+                              small                                                                              
                     .form-field
                       label(for='refno') Reference No:
                       input#refno(type='text' name='refno' autocomplete='off' value=Sale.refno)
                       small
                     .mb-3
+                      input#userRole(type='text' name='userRole' style='width: 40%; border: none;' value=role hidden)                                           
                       input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash" readonly hidden)
                       input.btn-primary(type='submit' value='Update' style='width: 50%; height: 40px; border-radius: 5px;')
           // end row
@@ -243,3 +281,18 @@ html(lang='en-US')
         // End Important for searhable dropdwn
         // for validation
         script(src='/javascript/salesUpdateVal.js')
+        script.
+            function myFunction() {
+            var result = document.getElementById("userRole").value;
+            if (result !="agent")
+            {
+                $("#header").show();
+                $("#table1").show();
+                $("#header_agent").hide();
+            } 
+            else{
+              $("#header").hide();
+              $("#table1").hide();
+              $("#header_agent").show();              
+            }
+            }

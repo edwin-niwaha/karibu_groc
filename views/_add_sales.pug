@@ -1,7 +1,7 @@
 doctype html
 html(lang='en-US')
   head
-    title Karibu Groceries | Credit Sales
+    title Karibu Groceries | Add Sales
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(http-equiv='content-type' content='text/html;charset=utf-8')
@@ -26,15 +26,6 @@ html(lang='en-US')
       $("#header").load("/assets/js_header/headerManager.html");
       $("#footer").load("/assets/js_header/footer.html");
       });
-    style.
-      .deleteRow {
-      border-radius: 1px;
-      color: red;
-      background-color: red;
-      height: 10px;
-      width: 30px;
-      border-color: white;
-      }
   body.fixed-left(onload='myFunction()')
     // Begin page
     #wrapper
@@ -148,51 +139,43 @@ html(lang='en-US')
                     | Email:&nbsp;  
                     b #{email} &nbsp;|&nbsp;
                     li.breadcrumb-item
-                      a(href='/creditSales') Credit Sales
+                      a(href='/add_sales') Sales
                     li.breadcrumb-item
-                      a(href='/credit_list') List                     
+                      a(href='/sales_list') List
+                    li.breadcrumb-item
+                      a(href='/creditSales')                      
                   .clearfix
-            form#creditfrm.form(action='/newCreditSales' name='creditfrm' method='POST')           
+            form#salesfrm.form(action='/newSales' name='salesfrm' method='POST')           
               .row
                 .col-md-6
                   .card-box
                     .form-horizontal(role='form')
+                      .form-field
+                        label(for='prodname')
+                          | Name of the produce:
+                        select#prodname(value='prodname' v-model="prodName" name='prodname' style='width:92%')
+                          option(value='' selected='') --search the item name--
+                          each pdc in produce
+                            option(value=pdc.prodname data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.unitprice) #{pdc.prodname}                            
+                        small
+                      .form-field
                         table.table-responsive
                           tbody
                             tr
                               th
-                                label(for='ddbuyer') Buyer:
+                                label(for='itemcat') SKU:
                               th &nbsp;&nbsp;
                               th
-                                label(for='nin') National ID:
+                                label(for='sku') Type of produce:
                             tr
                               td.form-field
-                                input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return validbuyer(event);')
-                                small
-                                small#lblError(style='color: red')
-                              td &nbsp;&nbsp;
+                                  input#sku(type='text' name='sku' autocomplete='off' readonly)
+                                  small
+                              td &nbsp;&nbsp;    
                               td.form-field
-                                input#nin(type='text' name='nin' autocomplete='off' maxlength='14' onkeypress='return validid(event);')
-                                small
-                                small#lblErrorid(style='color: red')                           
-                        table.table-responsive
-                          tbody
-                            tr
-                              th
-                                label(for='loc') Location:
-                              th &nbsp;&nbsp;
-                              th
-                                label(for='contacttel') Contact:
-                            tr
-                              td.form-field
-                                input#loc(type='text' name='loc' autocomplete='off' onkeypress='return valididLocation(event);')
-                                small#lblError(style='color: red')
-                                small
-                                small#lblErrorlc(style='color: red')
-                              td &nbsp;&nbsp;
-                              td.form-field
-                                input#contacttel(type='text' name='contacttel' autocomplete='off' maxlength='10' onkeypress='return functionx(event);')
-                                small 
+                                  input#itemcat(type='text' name='itemcat' autocomplete='off' readonly)
+                                  small                        
+                      div
                         table.table-responsive
                           tbody
                             tr
@@ -200,32 +183,34 @@ html(lang='en-US')
                                 label(for='tonn') Tonnage(kgs):
                               th &nbsp;&nbsp;
                               th
-                                label(for='unitprice') Unit price:
+                                label(for='unitprice') Unit Price:
+                                p {{tonn1}}
                             tr
                               td.form-field
-                                input#tonn.form-group(type='text' name='tonn' value='0' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
+                                input#tonn.form-group(type='text' v-model="tonn1" name='tonn' value='0' onchange='javascript:sumCalc();' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);')
                                 small
                               td &nbsp;&nbsp;
                               td.form-field
-                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);' onchange='javascript:sumCalc();' readonly)
-                                small                                                   
+                                input#unitprice.form-group(type='text' name='unitprice' value='0' maxlength='9' autocomplete='off' style='width: 100%;' onkeypress='return functionx(event);' onchange='javascript:sumCalc();' readonly)
+                                small
+                      .form-field
                         table.table-responsive
                           tbody
                             tr
                               th
-                                label(for='salesagent') Amount due:
-                              th &nbsp;&nbsp;
+                                label(for='amtpd') Amount Paid (UgX):
+                              th &nbsp;&nbsp;&nbsp;
                               th
-                                label(for='amtpd') Sales Agent:
+                                label(for='ddbuyer') Buyer
                             tr
                               td.form-field
-                                input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' onkeyup='javascript:this.value=Comma(this.value);')
-                                small                                 
-                              td &nbsp;&nbsp;
+                                  input#amtpd(type='text' name='amtpd' autocomplete='off' maxlength='9' onkeypress='return functionx(event);' value="0" readonly)
+                                  small
+                              td &nbsp;&nbsp;&nbsp;    
                               td.form-field
-                                input#salesagent(type='text' name='salesagent' autocomplete='off' style="background-color:#C0C0C0; border-radius:5px" value=username readonly)
-                                small#lblError1(style='color: red')
-                                small      
+                                  input#ddbuyer(type='text' name='ddbuyer' autocomplete='off' onkeypress='return Validate(event);')
+                                  small#lblError(style='color: red')
+                                  small      
                         table#table1.table
                           tbody
                             tr 
@@ -237,57 +222,47 @@ html(lang='en-US')
                               td #{totalPurchase.totalPurchTonnage}
                               td #{totalSales.totalSoldTonnage}
                               td #{totalCreditSales.totalCreditTonn}
-                              td(style='color:blue') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}                                                        
+                              td(style='color:blue') #{totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn}  
+                            tr 
+                              td #{totalPurchase.totalCost}
+                              td #{totalSales.totalAmt}
+                              td #{totalCreditSales.totalCreditAmt}
+                              td(style='color:blue') #{totalPurchase.totalCost - totalSales.totalAmt - totalCreditSales.totalCreditAmt}  
                 // end col
                 .col-md-6
                   .card-box
                     .form-field
-                      label(for='prodname')
-                        | Name of the produce:
-                      select#prodname.chzn-select(value='prodname' name='prodname' style='width:92%')
-                        option(value='' selected='') --search the item name--
-                        each pdc in produce
-                            option(value=pdc.prodname data-itemcat=pdc.itemcat data-sku=pdc.sku data-unitprice=pdc.unitprice) #{pdc.prodname}                            
-                      small   
-                    .form-field
-                      table.table-responsive
-                        tbody
-                          tr
-                            th
-                              label(for='itemcat') Stock Keeping Unit:
-                            th &nbsp;&nbsp;
-                            th
-                              label(for='sku') Type of produce:
-                          tr
-                            td.form-field
-                                input#sku(type='text' name='sku' autocomplete='off' readonly)
-                                small
-                            td &nbsp;&nbsp;    
-                            td.form-field
-                                input#itemcat(type='text' name='itemcat' autocomplete='off' readonly)
-                                small                        
-                      table.table-responsive
-                        tbody
-                          tr
-                            th
-                              label(for='duedte') Due date:
-                            th &nbsp;&nbsp;
-                            th
-                              label(for='dpatchdate') Date of dispatch:
-                          tr
-                            td.form-field
-                              input#duedte.form-control.pull-right.datepicker(type='date' name='duedte' autocomplete='off' style='width: 100%;')
+                      label(for='salesagent')
+                        | Sales Agent:
+                      input#salesagent(type='text' name='salesagent' autocomplete='off' style="background-color:#C0C0C0; border-radius:5px" value=username readonly)
+                      small#lblError1(style='color: red')
+                      small
+                    table.table-responsive
+                      tbody
+                        tr
+                          th
+                            label(for='sdate') date of sale:
+                          th 
+                          th
+                            label(for='stime') time of sale:
+                        tr
+                          td.form-field
+                              input#sdate(type='date' name='sdate' autocomplete='off')
                               small
-                            td &nbsp;&nbsp;
-                            td.form-field
-                              input#dpatchdate.form-control.pull-right.datepicker(type='date' name='dpatchdate' autocomplete='off' style='width: 100%;')
-                              small    
-                    hr
-                    .mb-3
-                      input#userRole(type='text' name='userRole' style='width: 40%; border: none;' value=role hidden)                                           
+                          td *************    
+                          td.form-field
+                              input#stime(type='time' name='stime' autocomplete='off')
+                              small                                                                              
+                    .form-field
+                      label(for='refno') Reference No:
+                      input#refno(type='text' name='refno' autocomplete='off')
+                      small
+                    .mb-3     
+                      input#userRole(type='text' name='userRole' style='width: 40%; border: none;' value=role hidden)                        
                       input#stockbal(type='text' name='stockbal' style='width: 40%; border: none;' value=totalPurchase.totalPurchTonnage - totalSales.totalSoldTonnage - totalCreditSales.totalCreditTonn hidden)
-                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="credit" readonly hidden)
+                      input#trans_type(type='text' name='trans_type' style='width: 40%; border: none;' value="cash" readonly hidden)
                       input#ddbranch(type='text' name='ddbranch' style='width: 40%; border: none;' value=branch readonly hidden)
+                      p(style='color:red') {{tonnageError}}
                       input.btn-primary(type='submit' value='Save' onclick="myFunctionTonn()" style='width: 50%; height: 40px; border-radius: 5px;')
           // end of modal
           // end row
@@ -297,6 +272,8 @@ html(lang='en-US')
         // End footer
         // END wrapper
         // Plugins
+        //- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        script(src='https://unpkg.com/vue@3/dist/vue.global.js')
         script(src='/assets/js/jquery.min.js')
         script(src='/assets/js/popper.min.js')
         // Popper for Bootstrap
@@ -312,6 +289,8 @@ html(lang='en-US')
         script(src='/plugins/switchery/switchery.min.js')
         script(src='/assets/js/jquery.core.js')
         script(src='/assets/js/modernizr.min.js')
+        script(src='/javascript/vue.js')
+
         // Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am
         // <script src="../assets/js/jquery.app.js"></script>
         script.
@@ -322,8 +301,8 @@ html(lang='en-US')
             $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
         // End Important for searhable dropdwn
         // for validation
-        script(src='/javascript/creditVal.js')
-        script(src='/javascript/fetchCreditSales.js')
+        script(src='/javascript/salesVal.js')
+        script(src='/javascript/fetchSales.js')
         script.
             function myFunction() {
             var result = document.getElementById("userRole").value;

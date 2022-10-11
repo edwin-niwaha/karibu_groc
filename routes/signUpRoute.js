@@ -3,18 +3,17 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const { isManager } = require("../auth/authorization");
-const { isAdmin } = require("../auth/authorization");
 const connectEnsureLogin = require("connect-ensure-login");
 
 //Import signUpModel][poikj ]
 const signUpModel = require('../models/signUpModel');
 
-router.get("/signup", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/signup", connectEnsureLogin.ensureLoggedIn(),isManager,
 (req, res) => {
     res.render("signUp");
 });
 
-router.get("/signup", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.get("/signup", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         try {
             //console.log(req.user.firstname)
@@ -28,7 +27,7 @@ router.get("/signup", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
     })
 
 //save record into the db
-router.post("/signup", connectEnsureLogin.ensureLoggedIn(), isManager, isAdmin,
+router.post("/signup", connectEnsureLogin.ensureLoggedIn(), isManager,
     async (req, res) => {
         const signup = new signUpModel(req.body);
         // console.log(req.body);

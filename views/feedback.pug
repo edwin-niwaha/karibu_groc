@@ -20,12 +20,6 @@ html(lang='en')
       div(style='position: absolute; left: 23%; top: 0%; width: 10%;')      
         button.btn.btn-primary(onclick="ExportToExcel('xlsx')") .xlsx 
           ion-icon(name='download-outline')
-      div(style='position: absolute; left: 40%; top: 0%; width: 30%;')
-        #searchBtn.input-group
-          .form-outline
-            input#form1.form-control(type='search' name='prodname' placeholder='Search by produce name')
-          button#SBtn.btn.btn-primary(type='button') Search
-            i.fa.fa-search                  
       hr
       if Contacts.length
         table#myTable.table.table-striped.table-bordered.table-responsive.table-hover

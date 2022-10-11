@@ -66,7 +66,7 @@ html(lang='en-US')
                   h6.text-overflow
                     small
                       | Welcome ! 
-                      asp:label#Label1(runat='server' text='Label')
+                      b #{username}
                 // item
                 a.dropdown-item.notify-item(href='javascript:void(0);')
                   i.mdi.mdi-account
@@ -128,14 +128,14 @@ html(lang='en-US')
                   .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
                     h3.text-white.m-t-10
                       | UgX: 
-                      span.counter #{totalSales.totalAmt}
-                    p.text-black.text-nowrap.m-b-10 TOTAL CASH SALES             
+                      span.counter #{totalPurchase.totalCost}
+                    p.text-black.text-nowrap.m-b-10 TOTAL PURCHASES              
                 .col-sm-4.col-lg-4
                   .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
                     h3.text-white.m-t-10
                       | UgX: 
-                      span.counter #{totalPurchase.totalCost}
-                    p.text-black.text-nowrap.m-b-10 TOTAL PURCHASES
+                      span.counter #{totalSales.totalAmt}
+                    p.text-black.text-nowrap.m-b-10 TOTAL CASH SALES             
                 .col-sm-4.col-lg-4
                   .widget-simple-chart.text-right.card-box(style='background-color:#FFA07A')
                     h3.text-white.m-t-10
@@ -144,7 +144,22 @@ html(lang='en-US')
                     p.text-black.text-nowrap.m-b-10 TOTAL CREDIT SALES             
               // end row
               .row
-                .col-lg-6
+                .col-lg-4
+                  .card-box(style='background-color:#40E0D0')
+                    h4.text-dark.header-title.m-t-0.m-b-30(style='color: #fff !important;')
+                      | Total Purchases @ Branch
+                    .widget-chart.text-center
+                      #sparkline3_
+                      ul.list-inline.m-t-15.mb-0
+                        li
+                          h5.text-white.m-t-20 Kampala
+                          |                                                 UgX
+                          h4.m-b-0(style='color: blue;') #{totalPurchaseKlaBr.totalCostKpl}
+                        li
+                          h5.text-white.m-t-20 Kabale
+                          |                                                 UgX
+                          h4.m-b-0(style='color: blue;') #{totalPurchaseKleBr.totalCostKle}              
+                .col-lg-4
                   .card-box(style='background-color:#40E0D0')
                     h4.text-dark.header-title.m-t-0.m-b-30(style='color: #fff !important;')
                       | Total Cash Sales @ Branch
@@ -159,7 +174,7 @@ html(lang='en-US')
                           h5.text-white.m-t-20 Kabale
                           |                                                 UgX
                           h4.m-b-0(style='color: blue;') #{totalSalesKleBr.totalAmtKle}
-                .col-lg-6
+                .col-lg-4
                   .card-box(style='background-color:#40E0D0')
                     h4.text-dark.header-title.m-t-0.m-b-30(style='color: #fff !important;')
                       | Total Credit Sales @ Branch

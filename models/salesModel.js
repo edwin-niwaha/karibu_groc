@@ -14,6 +14,7 @@ const salesSchema = new mongoose.Schema({
     ddbuyer:String,
     salesagent:String,
     sdate:String,
+    stime:String,
     refno:String,
     ddbranch: String,
     trans_type: String,
