@@ -40,8 +40,11 @@ const expressSession = require('express-session')({
     saveUninitialized: false,
 });
 
-//Database configuration
-mongoose.connect("mongodb://localhost:27017/karibudb",
+//environment variables
+require('dotenv').config();
+
+//database connection
+mongoose.connect(process.env.DB_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -202,5 +205,6 @@ app.get('*', (req, res) => {
 });
 
 //Server configuration
-port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`listening on port ${port}`));
+  app.listen(3000,function(req,res){
+    console.log("Server is started on port 3000");
+    });
